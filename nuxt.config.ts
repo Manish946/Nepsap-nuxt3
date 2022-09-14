@@ -24,42 +24,42 @@ export default defineNuxtConfig({
               name: 'home',
               path: '/home',
               components: {
-                default: resolve(__dirname, 'pages/index.vue'),
+                default: resolve(__dirname, '~/pages/index.vue'),
               },
             },
             {
               name: 'AboutUs',
               path: '/about',
               components: {
-                default: resolve(__dirname, 'pages/AboutPage.vue'),
+                default: resolve(__dirname, '~/pages/AboutPage.vue'),
               },
             },
             {
               name: 'Events',
               path: '/events',
               components: {
-                default: resolve(__dirname, 'pages/EventsPage.vue'),
+                default: resolve(__dirname, '~/pages/EventsPage.vue'),
               },
             },
             {
               name: 'Steering Committe',
               path: '/steeringCommitte',
               components: {
-                default: resolve(__dirname, 'pages/SteeringCommittePage.vue'),
+                default: resolve(__dirname, '~/pages/SteeringCommittePage.vue'),
               },
             },
             {
               name: 'Members',
               path: '/members',
               components: {
-                default: resolve(__dirname, 'pages/MembersPage.vue'),
+                default: resolve(__dirname, '~/pages/MembersPage.vue'),
               },
             },
             {
               name: 'Contact',
               path: '/contact',
               components: {
-                default: resolve(__dirname, 'pages/ContactPage.vue'),
+                default: resolve(__dirname, '~/pages/ContactPage.vue'),
               },
             }
           )
