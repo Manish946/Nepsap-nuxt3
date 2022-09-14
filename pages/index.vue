@@ -23,9 +23,11 @@
 </template>
 
 <script lang="ts">
+
+
 import Overview from '~/components/home/Overview.vue'
 export default({
   components: {Overview },
-  name: 'IndexPage',
+  name: 'Index',
 })
 </script>

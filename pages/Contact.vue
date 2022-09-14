@@ -3,7 +3,7 @@
     <Nav ></Nav>
     <main>
       <div class="contact">
-        <Contact></Contact>
+        <Contact-component></Contact-component>
       </div>
     </main>
 
@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import Contact from '~/components/contact/Contact.vue'
+import Contact from '~~/components/contact/Contact-component.vue'
 export default({
   components: { Contact },
   name:'ContactPage',

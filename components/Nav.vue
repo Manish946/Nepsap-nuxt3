@@ -60,7 +60,7 @@ export default({
     :class="{ 'navigation-wrapper-hidden': !showNavbar }"
   >
     <div class="navigation-container">
-      <nuxt-link to="/home" class="logo">
+      <nuxt-link to="/" class="logo">
         <img height="30" width="224" src="~/assets/Nepsaplogo.svg" alt="" />
       </nuxt-link>
 

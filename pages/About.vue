@@ -3,7 +3,7 @@
     <Nav></Nav>
     <main>
       <div class="about">
-        <About></About>
+        <About-component></About-component>
       </div>
       <div class="about-content">
         <About-content></About-content>

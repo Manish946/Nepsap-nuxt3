@@ -1,5 +1,6 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
+  ssr:true,
     head: {
         title: 'NepSap',
         meta: [
@@ -17,54 +18,7 @@ export default defineNuxtConfig({
         ],
       },
       type: ['vuetify'],
-      router: {
-        extendRoutes(routes, resolve) {
-          routes.push(
-            {
-              name: 'home',
-              path: '/home',
-              components: {
-                default: resolve(__dirname, '~/pages/index.vue'),
-              },
-            },
-            {
-              name: 'AboutUs',
-              path: '/about',
-              components: {
-                default: resolve(__dirname, '~/pages/AboutPage.vue'),
-              },
-            },
-            {
-              name: 'Events',
-              path: '/events',
-              components: {
-                default: resolve(__dirname, '~/pages/EventsPage.vue'),
-              },
-            },
-            {
-              name: 'Steering Committe',
-              path: '/steeringCommitte',
-              components: {
-                default: resolve(__dirname, '~/pages/SteeringCommittePage.vue'),
-              },
-            },
-            {
-              name: 'Members',
-              path: '/members',
-              components: {
-                default: resolve(__dirname, '~/pages/MembersPage.vue'),
-              },
-            },
-            {
-              name: 'Contact',
-              path: '/contact',
-              components: {
-                default: resolve(__dirname, '~/pages/ContactPage.vue'),
-              },
-            }
-          )
-        },
-      },
+     
       // Global CSS: https://go.nuxtjs.dev/config-css
       css: ['~/assets/style.css'],
     

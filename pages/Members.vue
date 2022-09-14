@@ -14,14 +14,10 @@
 
 
 <script lang="ts">
-import Vue from 'vue'
 export default({
   name:'MembersPage',
   computed:{
 
-    currentUser(){
-      return this.$store.state.userData;
-    },
 
   },
    mounted() {
