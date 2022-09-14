@@ -23,7 +23,6 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
 import Overview from '~/components/home/Overview.vue'
 export default({
   components: {Overview },

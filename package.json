@@ -11,6 +11,10 @@
     "nuxt": "3.0.0-rc.10"
   },
   "dependencies": {
+    "@nuxt/content": "^2.1.0",
+    "@nuxtjs/content": "^0.3.0",
+    "@nuxtjs/pwa": "^3.3.5",
+    "firebase": "^9.9.4",
     "lottie-web": "^5.9.6"
   }
 }
