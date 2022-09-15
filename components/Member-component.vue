@@ -16,7 +16,7 @@ const formState = ref({
   console.log(formState.value.Name)
 
 const handleSubmit = async () => {
-  const result = await addFirestoreData("members", formState.value);
+  const {result} = await addFirestoreData("members", formState.value);
   console.log(formState.value.Name)
   await getFirestoreData("members");
 };
