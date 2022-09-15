@@ -1,5 +1,13 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
+  publicRuntimeConfig:{
+    FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
+
+  },
+  privateRuntimeConfig:{
+    FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
+  }
+  ,
   ssr: true,
   head: {
     title: 'NepSap',
@@ -38,29 +46,7 @@ export default defineNuxtConfig({
     // https://go.nuxtjs.dev/axios
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
-    ['@nuxtjs/firebase', {
-      lazy: false,
-      config: {
-        apiKey: 'AIzaSyDa-YwgWTp2GDyVYEfv-XLb62100_HoEvU',
-        authDomain: 'nuxt-fire-demo.firebaseapp.com',
-        projectId: 'nuxt-fire-demo',
-        storageBucket: 'nuxt-fire-demo.appspot.com',
-        messagingSenderId: '807370470428',
-        appId: '1:807370470428:web:26da98c86c3fd352',
-        measurementId: 'G-XT6PVC1D4X',
-      },
-      onFirebaseHosting: false,
-      terminateDatabasesAfterGenerate: true,
-      services: {
-        auth: {
-          initialize: {
-            onAuthStateChangedAction: 'onAuthStateChanged',
-          },
-          ssr: true,
-          disableEmulatorWarnings: false,
-        }
-      }}]
-    // https://go.nuxtjs.dev/content
+   
 
   ],
 

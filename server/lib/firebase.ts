@@ -7,8 +7,9 @@ import {getFirestore} from "firebase/firestore"
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const config = useRuntimeConfig();
 const firebaseConfig = {
-  apiKey: "AIzaSyC9G0Rh5HDlVE6Xd2RRh7qdP6RYnkJxWdE",
+  apiKey: config.FIREBASE_API_KEY,
   authDomain: "nepsap-website.firebaseapp.com",
   projectId: "nepsap-website",
   storageBucket: "nepsap-website.appspot.com",
@@ -19,5 +20,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+console.log(app)
 export const firestoreDB = getFirestore(app);
 

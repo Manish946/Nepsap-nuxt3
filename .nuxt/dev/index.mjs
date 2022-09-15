@@ -22,7 +22,7 @@ import { hash } from 'file://E:/nuxt/Nepsap/node_modules/ohash/dist/index.mjs';
 import { createStorage } from 'file://E:/nuxt/Nepsap/node_modules/unstorage/dist/index.mjs';
 import unstorage_47drivers_47fs from 'file://E:/nuxt/Nepsap/node_modules/unstorage/dist/drivers/fs.mjs';
 
-const _runtimeConfig = {"app":{"baseURL":"/","buildAssetsDir":"/_nuxt/","cdnURL":""},"nitro":{"routes":{},"envPrefix":"NUXT_"},"public":{}};
+const _runtimeConfig = {"app":{"baseURL":"/","buildAssetsDir":"/_nuxt/","cdnURL":""},"nitro":{"routes":{},"envPrefix":"NUXT_"},"FIREBASE_API_KEY":"AIzaSyC9G0Rh5HDlVE6Xd2RRh7qdP6RYnkJxWdE","public":{"FIREBASE_API_KEY":"AIzaSyC9G0Rh5HDlVE6Xd2RRh7qdP6RYnkJxWdE"}};
 const ENV_PREFIX = "NITRO_";
 const ENV_PREFIX_ALT = _runtimeConfig.nitro.envPrefix ?? process.env.NITRO_ENV_PREFIX ?? "_";
 const getEnv = (key) => {
@@ -47,8 +47,8 @@ function overrideConfig(obj, parentKey = "") {
   }
 }
 overrideConfig(_runtimeConfig);
-const config = deepFreeze(_runtimeConfig);
-const useRuntimeConfig = () => config;
+const config$1 = deepFreeze(_runtimeConfig);
+const useRuntimeConfig = () => config$1;
 function deepFreeze(object) {
   const propNames = Object.getOwnPropertyNames(object);
   for (const name of propNames) {
@@ -451,8 +451,9 @@ server.listen(listenAddress, () => {
   process.on("uncaughtException", (err) => console.error("[nitro] [dev] [uncaughtException]", err));
 }
 
+const config = useRuntimeConfig();
 const firebaseConfig = {
-  apiKey: "AIzaSyC9G0Rh5HDlVE6Xd2RRh7qdP6RYnkJxWdE",
+  apiKey: config.FIREBASE_API_KEY,
   authDomain: "nepsap-website.firebaseapp.com",
   projectId: "nepsap-website",
   storageBucket: "nepsap-website.appspot.com",
@@ -461,6 +462,7 @@ const firebaseConfig = {
   measurementId: "G-8W345Q1GKP"
 };
 const app = initializeApp(firebaseConfig);
+console.log(app);
 const firestoreDB = getFirestore(app);
 
 const queryByCollection = async (col) => {
