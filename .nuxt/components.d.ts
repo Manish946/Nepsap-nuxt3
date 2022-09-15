@@ -2,7 +2,8 @@
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     'Footer': typeof import("../components/Footer.vue")['default']
-    'Nav': typeof import("../component../components/members/Member-component.vue
+    'MemberComponent': typeof import("../components/Member-component.vue")['default']
+    'Nav': typeof import("../components/Nav.vue")['default']
     'Newcomers': typeof import("../components/Newcomers.vue")['default']
     'SignIn': typeof import("../components/SignIn.vue")['default']
     'AboutComponent': typeof import("../components/about/About-component.vue")['default']
@@ -11,7 +12,6 @@ declare module '@vue/runtime-core' {
     'Home': typeof import("../components/home/Home.vue")['default']
     'HomeOverview': typeof import("../components/home/Overview.vue")['default']
     'Loadingbar': typeof import("../components/loadingbar.vue")['default']
-    'MembersMemberComponent': typeof import("../components/Member-component.vueult']
     'NuxtWelcome': typeof import("../node_modules/@nuxt/ui-templates/dist/templates/welcome.vue")['default']
     'NuxtLayout': typeof import("../node_modules/nuxt/dist/app/components/layout")['default']
     'NuxtErrorBoundary': typeof import("../node_modules/nuxt/dist/app/components/nuxt-error-boundary")['default']
@@ -20,7 +20,8 @@ declare module '@vue/runtime-core' {
     'NuxtLink': typeof import("../node_modules/nuxt/dist/app/components/nuxt-link")['default']
     'NuxtLoadingIndicator': typeof import("../node_modules/nuxt/dist/app/components/nuxt-loading-indicator")['default']
     'LazyFooter': typeof import("../components/Footer.vue")['default']
-    'LazyNav': typeof import("../component../components/members/Member-component.vue
+    'LazyMemberComponent': typeof import("../components/Member-component.vue")['default']
+    'LazyNav': typeof import("../components/Nav.vue")['default']
     'LazyNewcomers': typeof import("../components/Newcomers.vue")['default']
     'LazySignIn': typeof import("../components/SignIn.vue")['default']
     'LazyAboutComponent': typeof import("../components/about/About-component.vue")['default']
@@ -29,7 +30,6 @@ declare module '@vue/runtime-core' {
     'LazyHome': typeof import("../components/home/Home.vue")['default']
     'LazyHomeOverview': typeof import("../components/home/Overview.vue")['default']
     'LazyLoadingbar': typeof import("../components/loadingbar.vue")['default']
-    'LazyMembersMemberComponent': typeof import("../components/Member-component.vueult']
     'LazyNuxtWelcome': typeof import("../node_modules/@nuxt/ui-templates/dist/templates/welcome.vue")['default']
     'LazyNuxtLayout': typeof import("../node_modules/nuxt/dist/app/components/layout")['default']
     'LazyNuxtErrorBoundary': typeof import("../node_modules/nuxt/dist/app/components/nuxt-error-boundary")['default']
@@ -41,7 +41,8 @@ declare module '@vue/runtime-core' {
 }
 
 export const Footer: typeof import("../components/Footer.vue")['default']
-export const Nav: typeof import("../component../components/members/Member-component.vue
+export const MemberComponent: typeof import("../components/Member-component.vue")['default']
+export const Nav: typeof import("../components/Nav.vue")['default']
 export const Newcomers: typeof import("../components/Newcomers.vue")['default']
 export const SignIn: typeof import("../components/SignIn.vue")['default']
 export const AboutComponent: typeof import("../components/about/About-component.vue")['default']
@@ -50,7 +51,6 @@ export const ContactComponent: typeof import("../components/contact/Contact-comp
 export const Home: typeof import("../components/home/Home.vue")['default']
 export const HomeOverview: typeof import("../components/home/Overview.vue")['default']
 export const Loadingbar: typeof import("../components/loadingbar.vue")['default']
-export const MembersMemberComponent: typeof import("../components/Member-component.vueult']
 export const NuxtWelcome: typeof import("../node_modules/@nuxt/ui-templates/dist/templates/welcome.vue")['default']
 export const NuxtLayout: typeof import("../node_modules/nuxt/dist/app/components/layout")['default']
 export const NuxtErrorBoundary: typeof import("../node_modules/nuxt/dist/app/components/nuxt-error-boundary")['default']
@@ -59,7 +59,8 @@ export const ServerPlaceholder: typeof import("../node_modules/nuxt/dist/app/com
 export const NuxtLink: typeof import("../node_modules/nuxt/dist/app/components/nuxt-link")['default']
 export const NuxtLoadingIndicator: typeof import("../node_modules/nuxt/dist/app/components/nuxt-loading-indicator")['default']
 export const LazyFooter: typeof import("../components/Footer.vue")['default']
-export const LazyNav: typeof import("../component../components/members/Member-component.vue
+export const LazyMemberComponent: typeof import("../components/Member-component.vue")['default']
+export const LazyNav: typeof import("../components/Nav.vue")['default']
 export const LazyNewcomers: typeof import("../components/Newcomers.vue")['default']
 export const LazySignIn: typeof import("../components/SignIn.vue")['default']
 export const LazyAboutComponent: typeof import("../components/about/About-component.vue")['default']
@@ -68,7 +69,6 @@ export const LazyContactComponent: typeof import("../components/contact/Contact-
 export const LazyHome: typeof import("../components/home/Home.vue")['default']
 export const LazyHomeOverview: typeof import("../components/home/Overview.vue")['default']
 export const LazyLoadingbar: typeof import("../components/loadingbar.vue")['default']
-export const LazyMembersMemberComponent: typeof import("../components/Member-component.vueult']
 export const LazyNuxtWelcome: typeof import("../node_modules/@nuxt/ui-templates/dist/templates/welcome.vue")['default']
 export const LazyNuxtLayout: typeof import("../node_modules/nuxt/dist/app/components/layout")['default']
 export const LazyNuxtErrorBoundary: typeof import("../node_modules/nuxt/dist/app/components/nuxt-error-boundary")['default']

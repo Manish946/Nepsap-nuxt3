@@ -3,11 +3,15 @@
 </template>
 
 <script>
+import {GoogleAuthProvider,signInWithPopup,getAuth} from "firebase/auth"
+
+
 export default {
   methods:{
     gmailLogin(){
-      let that = this
-      
+      console.log("clocked")
+  const provider = new GoogleAuthProvider();
+  signInWithPopup(getAuth(),provider)
     }
   }
   }
