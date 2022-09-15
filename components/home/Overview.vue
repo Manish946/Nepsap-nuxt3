@@ -16,12 +16,10 @@ export default({
     <div class="overview-wrapper">
       <div class="overview-item">
         <div class="item-header">
-          <client-only>
+            <div>
             <img height="50" width="50" src="~/assets/cpr.svg" alt="" />
-            <template #placeholder>
-              <div class="circle-load"></div>
-            </template>
-          </client-only>
+            
+            </div>
           <span class="item-text">CPR</span>
         </div>
         <div class="item-content">
@@ -38,12 +36,8 @@ export default({
       </div>
       <div class="overview-item">
         <div class="item-header">
-          <client-only>
           <img height="50" width="50" src="~/assets/studentHouse.svg" alt="" />
-          <template #placeholder>
-              <div class="circle-load"></div>
-            </template>
-          </client-only>
+         
           <span class="item-text">Student</span>
         </div>
         <div class="item-content">
@@ -60,13 +54,9 @@ export default({
       </div>
       <div class="overview-item">
         <div class="item-header">
-          <client-only>
 
           <img height="50" width="50" src="~/assets/rentalHouse.svg" alt="" />
-          <template #placeholder>
-              <div class="circle-load"></div>
-            </template>
-          </client-only>
+          
           <span class="item-text">Rental</span>
         </div>
         <div class="item-content">
@@ -83,12 +73,8 @@ export default({
       </div>
       <div class="overview-item">
         <div class="item-header">
-          <client-only>
           <img height="50" width="50" src="~/assets/skat.svg" alt="" />
-          <template #placeholder>
-              <div class="circle-load"></div>
-            </template>
-          </client-only>
+          
           <span class="item-text">TAX</span>
         </div>
         <div class="item-content">

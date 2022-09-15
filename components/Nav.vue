@@ -3,9 +3,7 @@
 export default({
   name: 'NavComponent',
   computed: {
-    currentUser() {
-      return this.$store.state.userData
-    },
+
   },
   data() {
     return {
@@ -91,21 +89,13 @@ export default({
       <!-- <div >
       </div> -->
       <div class="login-wrapper">
-        <client-only>
-          <nuxt-link to="/login" v-if="!currentUser" class="login-button"
+          <nuxt-link to="/login" class="login-button"
             >Login</nuxt-link
           >
-          <a v-if="!currentUser" class="signin-button" href="#">Sign Up</a>
-          <a @click="signOut" v-if="currentUser" class="login-button">Logout</a>
+          <a class="signin-button" href="#">Sign Up</a>
+          <a @click="signOut" class="login-button">Logout</a>
 
-          <span style="color: white; font-size: 18px" v-if="currentUser">{{
-            currentUser.displayName
-          }}</span>
-          <template #placeholder>
-            <button class="loading-button">Loading</button>
-            <button class="loading-button">Loading</button>
-          </template>
-        </client-only>
+
       </div>
 
       <div>
