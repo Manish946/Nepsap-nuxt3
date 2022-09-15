@@ -2,6 +2,7 @@
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     'Footer': typeof import("../components/Footer.vue")['default']
+    'MemberComponent': typeof import("../components/Member-component.vue")['default']
     'Nav': typeof import("../components/Nav.vue")['default']
     'Newcomers': typeof import("../components/Newcomers.vue")['default']
     'SignIn': typeof import("../components/SignIn.vue")['default']
@@ -19,6 +20,7 @@ declare module '@vue/runtime-core' {
     'NuxtLink': typeof import("../node_modules/nuxt/dist/app/components/nuxt-link")['default']
     'NuxtLoadingIndicator': typeof import("../node_modules/nuxt/dist/app/components/nuxt-loading-indicator")['default']
     'LazyFooter': typeof import("../components/Footer.vue")['default']
+    'LazyMemberComponent': typeof import("../components/Member-component.vue")['default']
     'LazyNav': typeof import("../components/Nav.vue")['default']
     'LazyNewcomers': typeof import("../components/Newcomers.vue")['default']
     'LazySignIn': typeof import("../components/SignIn.vue")['default']
@@ -39,6 +41,7 @@ declare module '@vue/runtime-core' {
 }
 
 export const Footer: typeof import("../components/Footer.vue")['default']
+export const MemberComponent: typeof import("../components/Member-component.vue")['default']
 export const Nav: typeof import("../components/Nav.vue")['default']
 export const Newcomers: typeof import("../components/Newcomers.vue")['default']
 export const SignIn: typeof import("../components/SignIn.vue")['default']
@@ -56,6 +59,7 @@ export const ServerPlaceholder: typeof import("../node_modules/nuxt/dist/app/com
 export const NuxtLink: typeof import("../node_modules/nuxt/dist/app/components/nuxt-link")['default']
 export const NuxtLoadingIndicator: typeof import("../node_modules/nuxt/dist/app/components/nuxt-loading-indicator")['default']
 export const LazyFooter: typeof import("../components/Footer.vue")['default']
+export const LazyMemberComponent: typeof import("../components/Member-component.vue")['default']
 export const LazyNav: typeof import("../components/Nav.vue")['default']
 export const LazyNewcomers: typeof import("../components/Newcomers.vue")['default']
 export const LazySignIn: typeof import("../components/SignIn.vue")['default']
