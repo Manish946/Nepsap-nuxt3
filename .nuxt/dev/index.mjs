@@ -5,7 +5,9 @@ import { join } from 'path';
 import { mkdirSync } from 'fs';
 import { parentPort, threadId } from 'worker_threads';
 import { provider, isWindows } from 'file://E:/nuxt/Nepsap/node_modules/std-env/dist/index.mjs';
-import { eventHandler, defineEventHandler, handleCacheHeaders, createEvent, createApp, createRouter, lazyEventHandler, getQuery } from 'file://E:/nuxt/Nepsap/node_modules/h3/dist/index.mjs';
+import { eventHandler, defineEventHandler, handleCacheHeaders, createEvent, createApp, createRouter, lazyEventHandler, useQuery, useBody, getQuery } from 'file://E:/nuxt/Nepsap/node_modules/h3/dist/index.mjs';
+import { getFirestore, collection, getDocs, addDoc, doc, deleteDoc } from 'file://E:/nuxt/Nepsap/node_modules/firebase/firestore/dist/index.mjs';
+import { initializeApp } from 'file://E:/nuxt/Nepsap/node_modules/firebase/app/dist/index.mjs';
 import { createRenderer } from 'file://E:/nuxt/Nepsap/node_modules/vue-bundle-renderer/dist/runtime.mjs';
 import devalue from 'file://E:/nuxt/Nepsap/node_modules/@nuxt/devalue/dist/devalue.mjs';
 import { renderToString } from 'file://E:/nuxt/Nepsap/node_modules/vue/server-renderer/index.mjs';
@@ -363,11 +365,15 @@ const errorHandler = (async function errorhandler(error, event) {
   event.res.end(html);
 });
 
-const _lazy_43hbPR = () => Promise.resolve().then(function () { return hello$1; });
+const _lazy_4IhsIX = () => Promise.resolve().then(function () { return query_get$1; });
+const _lazy_LF1Qk4 = () => Promise.resolve().then(function () { return delete_get$1; });
+const _lazy_8HZck9 = () => Promise.resolve().then(function () { return add_post$1; });
 const _lazy_W9Dtqa = () => Promise.resolve().then(function () { return renderer$1; });
 
 const handlers = [
-  { route: '/api/hello', handler: _lazy_43hbPR, lazy: true, middleware: false, method: undefined },
+  { route: '/api/query', handler: _lazy_4IhsIX, lazy: true, middleware: false, method: "get" },
+  { route: '/api/delete', handler: _lazy_LF1Qk4, lazy: true, middleware: false, method: "get" },
+  { route: '/api/add', handler: _lazy_8HZck9, lazy: true, middleware: false, method: "post" },
   { route: '/__nuxt_error', handler: _lazy_W9Dtqa, lazy: true, middleware: false, method: undefined },
   { route: '/**', handler: _lazy_W9Dtqa, lazy: true, middleware: false, method: undefined }
 ];
@@ -445,15 +451,83 @@ server.listen(listenAddress, () => {
   process.on("uncaughtException", (err) => console.error("[nitro] [dev] [uncaughtException]", err));
 }
 
-const hello = defineEventHandler((event) => {
-  return {
-    api: "works"
-  };
+const firebaseConfig = {
+  apiKey: "AIzaSyC9G0Rh5HDlVE6Xd2RRh7qdP6RYnkJxWdE",
+  authDomain: "nepsap-website.firebaseapp.com",
+  projectId: "nepsap-website",
+  storageBucket: "nepsap-website.appspot.com",
+  messagingSenderId: "1012381467635",
+  appId: "1:1012381467635:web:f655c0ce88fcfcee030886",
+  measurementId: "G-8W345Q1GKP"
+};
+const app = initializeApp(firebaseConfig);
+const firestoreDB = getFirestore(app);
+
+const queryByCollection = async (col) => {
+  const colRef = collection(firestoreDB, col);
+  const snapshot = await getDocs(colRef);
+  const docs = Array.from(snapshot.docs).map((doc2) => {
+    return {
+      ...doc2.data(),
+      id: doc2.id
+    };
+  });
+  return docs;
+};
+const add = async (col, document) => {
+  const colRef = collection(firestoreDB, col);
+  const docRef = await addDoc(colRef, document);
+  return docRef;
+};
+const del = async (col, id) => {
+  const docRef = doc(firestoreDB, col, id);
+  return await deleteDoc(docRef);
+};
+
+const query_get = defineEventHandler(async (event) => {
+  try {
+    const query = useQuery(event.req);
+    const docs = await queryByCollection(query.col);
+    return { result: docs };
+  } catch (error) {
+    return { result: [], error: error.message };
+  }
 });
 
-const hello$1 = /*#__PURE__*/Object.freeze({
+const query_get$1 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  'default': hello
+  'default': query_get
+});
+
+const delete_get = defineEventHandler(async (event) => {
+  try {
+    const { col, id } = useQuery(event.req);
+    await del(col, id);
+    return { result: id };
+  } catch (error) {
+    return { error: error.message };
+  }
+});
+
+const delete_get$1 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  'default': delete_get
+});
+
+const add_post = defineEventHandler(async (event) => {
+  try {
+    const query = useQuery(event.req);
+    const body = await useBody(event.req);
+    const docRef = await add(query.col, body);
+    return { result: docRef };
+  } catch (error) {
+    return { error: error.message };
+  }
+});
+
+const add_post$1 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  'default': add_post
 });
 
 function buildAssetsURL(...path) {

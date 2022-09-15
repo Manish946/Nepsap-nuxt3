@@ -3,8 +3,7 @@
     <Nav></Nav>
     <main>
       <div class="home">
-      <!-- <SignIn></SignIn> -->
-
+      <SignIn></SignIn>
       </div>
     </main>
 
