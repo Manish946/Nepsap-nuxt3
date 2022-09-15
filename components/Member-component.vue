@@ -2,6 +2,7 @@
     <h1>Members</h1>
     <pre>{{members}}</pre>
     <button @click="handleSubmit">Add To Firebase</button>
+    <button  @click="deleteMember">Delete</button>
 </template>
 
 <script setup>
@@ -17,6 +18,11 @@ const formState = ref({
 const handleSubmit = async () => {
   const result = await addFirestoreData("members", formState.value);
   console.log(formState.value.Name)
+  await getFirestoreData("members");
+};
+
+const deleteMember = async () => {
+  await deleteFirestoreData("members", "XOa2vfh7bx7ZVzc828bI");
   await getFirestoreData("members");
 };
 
