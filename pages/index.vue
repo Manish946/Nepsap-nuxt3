@@ -27,6 +27,7 @@
 
 import Overview from '~/components/home/Overview.vue'
 export default({
+  layout:"default",
   components: {Overview },
   name: 'Index',
 })
