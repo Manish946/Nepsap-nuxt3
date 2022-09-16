@@ -275,6 +275,10 @@ textarea {
 }
 
 @media only screen and (max-width: 1140px) {
+  .social-wrapper-links{
+    justify-content: center;
+  }
+
   .mobile-contact-animation {
     width: 350px;
     height: 250px;

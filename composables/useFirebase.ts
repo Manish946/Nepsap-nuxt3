@@ -33,7 +33,7 @@ import {
     firebaseUser.value = auth.currentUser;
   
   
-    const router = useRouter();
+    
   
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -41,7 +41,6 @@ import {
         // https://firebase.google.com/docs/reference/js/firebase.User
       } else {
         //if signed out
-        router.push("/");
       }
   
       firebaseUser.value = user;
@@ -51,7 +50,10 @@ import {
   };
   
   export const signOutUser = async () => {
+    
     const auth = getAuth();
     const result = await auth.signOut();
+    const router = useRouter();
+    router.push("/");
     return result;
   };
