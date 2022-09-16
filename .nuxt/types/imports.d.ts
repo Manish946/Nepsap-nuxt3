@@ -23,7 +23,9 @@ declare global {
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getFirestoreData: typeof import('../../composables/useFirestore')['getFirestoreData']
+  const gmailSignin: typeof import('../../composables/useFirebase')['gmailSignin']
   const h: typeof import('vue')['h']
+  const initUser: typeof import('../../composables/useFirebase')['initUser']
   const inject: typeof import('vue')['inject']
   const isNuxtError: typeof import('../../node_modules/nuxt/dist/app')['isNuxtError']
   const isPrerendered: typeof import('../../node_modules/nuxt/dist/app')['isPrerendered']
@@ -67,6 +69,7 @@ declare global {
   const shallowReadonly: typeof import('vue')['shallowReadonly']
   const shallowRef: typeof import('vue')['shallowRef']
   const showError: typeof import('../../node_modules/nuxt/dist/app')['showError']
+  const signOutUser: typeof import('../../composables/useFirebase')['signOutUser']
   const throwError: typeof import('../../node_modules/nuxt/dist/app')['throwError']
   const toRaw: typeof import('vue')['toRaw']
   const toRef: typeof import('vue')['toRef']
@@ -84,6 +87,7 @@ declare global {
   const useCssVars: typeof import('vue')['useCssVars']
   const useError: typeof import('../../node_modules/nuxt/dist/app')['useError']
   const useFetch: typeof import('../../node_modules/nuxt/dist/app')['useFetch']
+  const useFirebaseUser: typeof import('../../composables/useStates')['useFirebaseUser']
   const useHead: typeof import('../../node_modules/nuxt/dist/head/runtime')['useHead']
   const useLazyAsyncData: typeof import('../../node_modules/nuxt/dist/app')['useLazyAsyncData']
   const useLazyFetch: typeof import('../../node_modules/nuxt/dist/app')['useLazyFetch']
@@ -133,7 +137,9 @@ declare module '@vue/runtime-core' {
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getFirestoreData: UnwrapRef<typeof import('../../composables/useFirestore')['getFirestoreData']>
+    readonly gmailSignin: UnwrapRef<typeof import('../../composables/useFirebase')['gmailSignin']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
+    readonly initUser: UnwrapRef<typeof import('../../composables/useFirebase')['initUser']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly isNuxtError: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['isNuxtError']>
     readonly isPrerendered: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['isPrerendered']>
@@ -177,6 +183,7 @@ declare module '@vue/runtime-core' {
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
     readonly showError: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['showError']>
+    readonly signOutUser: UnwrapRef<typeof import('../../composables/useFirebase')['signOutUser']>
     readonly throwError: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['throwError']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
     readonly toRef: UnwrapRef<typeof import('vue')['toRef']>
@@ -194,6 +201,7 @@ declare module '@vue/runtime-core' {
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
     readonly useError: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useError']>
     readonly useFetch: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useFetch']>
+    readonly useFirebaseUser: UnwrapRef<typeof import('../../composables/useStates')['useFirebaseUser']>
     readonly useHead: UnwrapRef<typeof import('../../node_modules/nuxt/dist/head/runtime')['useHead']>
     readonly useLazyAsyncData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useLazyAsyncData']>
     readonly useLazyFetch: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useLazyFetch']>

@@ -1,42 +1,26 @@
 <template>
   <button @click="gmailLogin">Login With Gmail</button>
-  <button @click="logout" v-if="currentUser">Logout</button>
-  <h1>{{currentUser}}</h1>
+  <button @click="logout">Logout</button>
+  <pre>{{firebaseUser}}</pre>
 </template>
 
 <script>
-import { GoogleAuthProvider, signInWithPopup, getAuth, signOut,onAuthStateChanged} from "firebase/auth";
-var user;
-console.log(user);
+import {signOutUser} from "../composables/useFirebase"
 
 
 export default {
   computed:{
-    currentUser() {
-      return user;
-    }
+
   },
   methods: {
-    gmailLogin() {
-      console.log("clicked");
-      const provider = new GoogleAuthProvider();
-      signInWithPopup(getAuth(), provider)
-        .then((result) => {
-         // this.$store.commit('ON_AUTH_STATE_CHANGED_MUTATION')
-          user = result;
-        //  console.log(this.$store.state.userData)
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-    logout(){
-      signOut(auth).then(()=>{
+    gmailLogin(){
 
-      })
-    }
+    gmailSignin();
+},
+  logout(){
+    signOutUser()
+  }
   },
-  
-};
 
+};
 </script>
