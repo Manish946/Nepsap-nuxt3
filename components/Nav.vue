@@ -1,6 +1,16 @@
-<script>
+
+<script lang="ts">
+
 
 export default({
+  setup(){
+    const user = useFirebaseUser();
+
+    return{
+      user
+    }
+  }
+  ,
   name: 'NavComponent',
   computed: {
 
@@ -48,9 +58,9 @@ export default({
     window.addEventListener('scroll', this.onScroll)
   },
   beforeDestroy() {
-    window.removeEventListener('scroll', this.onScroll)
-  },
-})
+    window.removeEventListener('scroll', this.onScroll);
+  }
+});
 </script>
 <template>
   <div
@@ -94,8 +104,9 @@ export default({
           >
           <a class="signin-button" href="#">Sign Up</a>
           <a @click="signOut" class="login-button">Logout</a>
-
-
+          <client-only v-if="user">
+          <p style="color:white">{{user.displayName}}</p>
+          </client-only>
       </div>
 
       <div>
