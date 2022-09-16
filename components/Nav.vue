@@ -25,8 +25,7 @@ export default({
   },
   methods: {
     signOut() {
-      this.$fire.auth.signOut()
-      window.location.href = '/login'
+      signOutUser()
     },
     menuTrigger() {
       const nav = document.getElementById('nav')
@@ -99,11 +98,11 @@ export default({
       <!-- <div >
       </div> -->
       <div class="login-wrapper">
-          <nuxt-link to="/login" class="login-button"
+          <nuxt-link to="/login" v-if="!user" class="login-button"
             >Login</nuxt-link
           >
-          <a class="signin-button" href="#">Sign Up</a>
-          <a @click="signOut" class="login-button">Logout</a>
+          <a class="signin-button" v-if="!user" href="#">Sign Up</a>
+          <a @click="signOut" v-if="user" class="login-button">Logout</a>
           <client-only v-if="user">
           <p style="color:white">{{user.displayName}}</p>
           </client-only>

@@ -32,7 +32,6 @@ import {
     // const userFB = useUser()
     firebaseUser.value = auth.currentUser;
   
-    const userCookie = useCookie("userCookie");
   
     const router = useRouter();
   
@@ -47,10 +46,8 @@ import {
       }
   
       firebaseUser.value = user;
-      console.log(firebaseUser.value.displayName)
       
       // @ts-ignore
-      userCookie.value = user; //ignore error because nuxt will serialize to json
     });
   };
   
