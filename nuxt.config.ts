@@ -9,7 +9,7 @@ export default defineNuxtConfig({
   }
   ,
   ssr: true,
-  head: {
+  meta: {
     title: 'NepSap',
     meta: [
       { charset: 'utf-8' },
@@ -18,11 +18,12 @@ export default defineNuxtConfig({
       { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [
-      { rel: 'icon', type: 'image/png', href: '/PageLogo.png' },
+
       {
-        rel: 'stylesheet',
+        rel: 'stylesheet',type:'text/css',
         href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css',
       },
+      { rel: 'icon', type: 'image/png', href: '/PageLogo.png' },
     ],
   },
   type: ['vuetify'],

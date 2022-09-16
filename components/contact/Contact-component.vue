@@ -19,7 +19,6 @@ export default({
   },
 })
 </script>
-
 <template>
   <div class="contact-layout">
     <div class="small-contact-animation">
@@ -31,15 +30,16 @@ export default({
       <ul class="social-wrapper-links">
         <li class="social-item">
           <a
-            class="social-links fa fa-facebook"
+            class="fa fa-facebook"
             href="https://www.facebook.com/NepSAPDenmark"
             aria-label="link"
             target="_blank"
           ></a>
         </li>
+
         <li class="social-item">
           <a
-            class="social-links fa fa-google"
+            class="fa fa-google"
             href="mailto: nepsap.denmark@gmail.com"
             aria-label="link"
             target="_blank"
@@ -47,7 +47,7 @@ export default({
         </li>
         <li class="social-item">
           <a
-            class="social-links fa fa-linkedin"
+            class="fa fa-linkedin"
             href="https://www.linkedin.com/groups/8681164/"
             aria-label="link"
             target="_blank"
@@ -107,6 +107,7 @@ export default({
   width: 20px;
   text-align: center;
   text-decoration: none;
+
   border-radius: 50%;
 }
 
@@ -146,9 +147,6 @@ export default({
   text-decoration: none;
 }
 
-.social-links {
-  color: white;
-}
 
 form {
   max-width: 420px;

@@ -31,7 +31,7 @@ export default ({
               target="_blank"
               class="social-link"
             >
-              <p class="social-links fa fa-facebook"></p>
+              <p class="fa fa-facebook"></p>
               <p class="link-text">Facebook</p>
             </a>
           </li>
@@ -41,7 +41,7 @@ export default ({
               target="_blank"
               class="social-link"
             >
-              <p class="social-links fa fa-linkedin"></p>
+              <p class="fa fa-linkedin"></p>
               <p class="link-text">Linkedin</p>
             </a>
           </li>
@@ -51,7 +51,7 @@ export default ({
               target="_blank"
               class="social-link"
             >
-              <p class="social-links fa fa-google"></p>
+              <p class="fa fa-google"></p>
               <p class="link-text">Gmail</p>
             </a>
           </li>
