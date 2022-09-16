@@ -29,6 +29,7 @@ const deleteMember = async () => {
 const members = ref();
 onMounted(async()=>{
   const { result } = await $fetch("/api/query?col=members")
+  
   console.log(result)
   members.value = result;
 });

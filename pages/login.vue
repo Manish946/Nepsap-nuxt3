@@ -2,7 +2,7 @@
   <div>
     <Nav></Nav>
     <main>
-      <div class="home">
+      <div class="contact">
       <SignIn></SignIn>
       </div>
     </main>

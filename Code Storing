@@ -1,30 +1,22 @@
 <template>
   <button @click="gmailLogin">Login With Gmail</button>
-  <button @click="logout" v-if="currentUser">Logout</button>
-  <h1>{{currentUser}}</h1>
+  <button @click="logout" v-if="isLoggedIn">Logout</button>
 </template>
 
 <script>
-import { GoogleAuthProvider, signInWithPopup, getAuth, signOut,onAuthStateChanged} from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup, getAuth, signOut,onAuthStateChanged } from "firebase/auth";
 var user;
-console.log(user);
-
-
+const isLoggedIn = ref(false);
 export default {
-  computed:{
-    currentUser() {
-      return user;
-    }
-  },
   methods: {
     gmailLogin() {
       console.log("clicked");
       const provider = new GoogleAuthProvider();
       signInWithPopup(getAuth(), provider)
         .then((result) => {
-         // this.$store.commit('ON_AUTH_STATE_CHANGED_MUTATION')
+          
           user = result;
-        //  console.log(this.$store.state.userData)
+          console.log(user);
         })
         .catch((error) => {
           console.log(error);
@@ -39,4 +31,15 @@ export default {
   
 };
 
+let auth;
+onMounted(()=>{
+  auth = getAuth();
+  onAuthStateChanged(auth, (user) =>{
+    if(user){
+      isLoggedIn.value = true;
+    }else{
+      isLoggedIn.value =false;
+    }
+  })
+  })
 </script>
