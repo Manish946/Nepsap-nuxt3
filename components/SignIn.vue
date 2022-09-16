@@ -1,26 +1,26 @@
 <template>
+<div>
   <button @click="gmailLogin">Login With Gmail</button>
-  <button @click="logout">Logout</button>
-  <pre>{{firebaseUser}}</pre>
+  <button @click="logout" v-if="user">Logout</button>
+  <client-only v-if="user">
+  <pre>{{user.displayName}}</pre>
+
+  </client-only>
+</div>
+
 </template>
 
-<script>
-import {signOutUser} from "../composables/useFirebase"
+<script setup>
 
+const user = useFirebaseUser();
 
-export default {
-  computed:{
-
-  },
-  methods: {
-    gmailLogin(){
+function gmailLogin(){
 
     gmailSignin();
-},
-  logout(){
+}
+
+function logout(){
     signOutUser()
   }
-  },
 
-};
 </script>
