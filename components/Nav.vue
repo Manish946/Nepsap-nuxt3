@@ -102,7 +102,9 @@ export default({
           >
           <a class="signin-button" v-if="!user" href="#">Sign Up</a>
           <a @click="signOut" v-if="user" class="login-button">Logout</a>
-
+          <div v-if="user">
+          <p style="color:white">{{user.displayName}}</p>
+          </div>
       </div>
 
       <div>
