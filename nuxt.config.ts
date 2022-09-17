@@ -28,7 +28,6 @@ export default defineNuxtConfig({
   type: ['vuetify'],
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['~/assets/style.css'],
 
 
   // Auto import components: https://go.nuxtjs.dev/config-components
