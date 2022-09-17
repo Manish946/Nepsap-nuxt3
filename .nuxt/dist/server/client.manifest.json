@@ -6,10 +6,10 @@
     "module": true,
     "resourceType": "script"
   },
-  "D:/Github/Nepsap-nuxt3/node_modules/nuxt/dist/app/entry.mjs": {
+  "E:/nuxt/Nepsap/node_modules/nuxt/dist/app/entry.mjs": {
     "resourceType": "script",
     "module": true,
     "isEntry": true,
-    "file": "D:/Github/Nepsap-nuxt3/node_modules/nuxt/dist/app/entry.mjs"
+    "file": "E:/nuxt/Nepsap/node_modules/nuxt/dist/app/entry.mjs"
   }
 }
