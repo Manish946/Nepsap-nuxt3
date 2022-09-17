@@ -26,7 +26,7 @@ export default defineNuxtConfig({
     ],
   },
   type: ['vuetify'],
-  css: ['assets/style.css'],
+  css: ['~/assets/style.css'],
   // Global CSS: https://go.nuxtjs.dev/config-css
 
 
