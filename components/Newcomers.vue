@@ -82,12 +82,7 @@ export default({
                 student-housing-secondary-background
               "
             >
-              <img
-                height="50"
-                width="50"
-                src="~/assets/logos/studentsvg.svg"
-                alt=""
-              />
+
               <p class="information-container-text student-housing-primary">
                 Student
               </p>
