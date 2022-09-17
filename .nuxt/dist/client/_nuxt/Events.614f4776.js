@@ -1,1 +1,0 @@
-import{_ as t}from"./Nav.fedcd70b.js";import{a as n,o as a,b as s,f as c,e}from"./entry.64158aec.js";const _={name:"EventPage"},r=e("main",null,[e("div",{class:"home"})],-1);function m(p,d,i,l,f,u){const o=t;return a(),s("div",null,[c(o),r])}const $=n(_,[["render",m]]);export{$ as default};

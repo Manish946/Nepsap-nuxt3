@@ -1,13 +1,24 @@
-import 'file://E:/nuxt/Nepsap/node_modules/node-fetch-native/dist/polyfill.mjs';
-import { defineEventHandler, handleCacheHeaders, createEvent, createApp, createRouter, lazyEventHandler } from 'file://E:/nuxt/Nepsap/node_modules/h3/dist/index.mjs';
-import { createFetch as createFetch$1, Headers } from 'file://E:/nuxt/Nepsap/node_modules/ohmyfetch/dist/node.mjs';
+globalThis._importMeta_={url:import.meta.url,env:process.env};import 'file://E:/nuxt/Nepsap/node_modules/node-fetch-native/dist/polyfill.mjs';
+import { Server } from 'http';
+import { tmpdir } from 'os';
+import { join } from 'path';
+import { mkdirSync } from 'fs';
+import { parentPort, threadId } from 'worker_threads';
+import { provider, isWindows } from 'file://E:/nuxt/Nepsap/node_modules/std-env/dist/index.mjs';
+import { eventHandler, defineEventHandler, handleCacheHeaders, createEvent, createApp, createRouter, lazyEventHandler, useQuery, useBody, getQuery } from 'file://E:/nuxt/Nepsap/node_modules/h3/dist/index.mjs';
+import { getFirestore, collection, getDocs, addDoc, doc, deleteDoc } from 'file://E:/nuxt/Nepsap/node_modules/firebase/firestore/dist/index.mjs';
+import { initializeApp } from 'file://E:/nuxt/Nepsap/node_modules/firebase/app/dist/index.mjs';
+import { createRenderer } from 'file://E:/nuxt/Nepsap/node_modules/vue-bundle-renderer/dist/runtime.mjs';
+import devalue from 'file://E:/nuxt/Nepsap/node_modules/@nuxt/devalue/dist/devalue.mjs';
+import { renderToString } from 'file://E:/nuxt/Nepsap/node_modules/vue/server-renderer/index.mjs';
+import { parseURL, withQuery, joinURL } from 'file://E:/nuxt/Nepsap/node_modules/ufo/dist/index.mjs';
 import destr from 'file://E:/nuxt/Nepsap/node_modules/destr/dist/index.mjs';
+import { snakeCase } from 'file://E:/nuxt/Nepsap/node_modules/scule/dist/index.mjs';
+import { createFetch as createFetch$1, Headers } from 'file://E:/nuxt/Nepsap/node_modules/ohmyfetch/dist/node.mjs';
 import { createRouter as createRouter$1 } from 'file://E:/nuxt/Nepsap/node_modules/radix3/dist/index.mjs';
 import { createCall, createFetch } from 'file://E:/nuxt/Nepsap/node_modules/unenv/runtime/fetch/index.mjs';
 import { createHooks } from 'file://E:/nuxt/Nepsap/node_modules/hookable/dist/index.mjs';
-import { snakeCase } from 'file://E:/nuxt/Nepsap/node_modules/scule/dist/index.mjs';
 import { hash } from 'file://E:/nuxt/Nepsap/node_modules/ohash/dist/index.mjs';
-import { parseURL, withQuery } from 'file://E:/nuxt/Nepsap/node_modules/ufo/dist/index.mjs';
 import { createStorage } from 'file://E:/nuxt/Nepsap/node_modules/unstorage/dist/index.mjs';
 import unstorage_47drivers_47fs from 'file://E:/nuxt/Nepsap/node_modules/unstorage/dist/drivers/fs.mjs';
 
@@ -36,8 +47,8 @@ function overrideConfig(obj, parentKey = "") {
   }
 }
 overrideConfig(_runtimeConfig);
-const config = deepFreeze(_runtimeConfig);
-const useRuntimeConfig = () => config;
+const config$1 = deepFreeze(_runtimeConfig);
+const useRuntimeConfig = () => config$1;
 function deepFreeze(object) {
   const propNames = Object.getOwnPropertyNames(object);
   for (const name of propNames) {
@@ -86,6 +97,40 @@ storage.mount('root', unstorage_47drivers_47fs({"driver":"fs","base":"E:\\nuxt\\
 storage.mount('src', unstorage_47drivers_47fs({"driver":"fs","base":"E:\\nuxt\\Nepsap\\server","ignore":["**/node_modules/**","**/.git/**"]}));
 storage.mount('build', unstorage_47drivers_47fs({"driver":"fs","base":"E:\\nuxt\\Nepsap\\.nuxt","ignore":["**/node_modules/**","**/.git/**"]}));
 storage.mount('cache', unstorage_47drivers_47fs({"driver":"fs","base":"E:\\nuxt\\Nepsap\\.nuxt\\cache","ignore":["**/node_modules/**","**/.git/**"]}));
+
+function defineRenderHandler(handler) {
+  return eventHandler(async (event) => {
+    if (event.req.url.endsWith("/favicon.ico")) {
+      event.res.setHeader("Content-Type", "image/x-icon");
+      event.res.end("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7");
+      return;
+    }
+    const response = await handler(event);
+    if (!response) {
+      if (!event.res.writableEnded) {
+        event.res.statusCode = event.res.statusCode === 200 ? 500 : event.res.statusCode;
+        event.res.end("No response returned from render handler: " + event.req.url);
+      }
+      return;
+    }
+    const nitroApp = useNitroApp();
+    await nitroApp.hooks.callHook("render:response", response, { event });
+    if (!event.res.headersSent && response.headers) {
+      for (const header in response.headers) {
+        event.res.setHeader(header, response.headers[header]);
+      }
+      if (response.statusCode) {
+        event.res.statusCode = response.statusCode;
+      }
+      if (response.statusMessage) {
+        event.res.statusMessage = response.statusMessage;
+      }
+    }
+    if (!event.res.writableEnded) {
+      event.res.end(typeof response.body === "string" ? response.body : JSON.stringify(response.body));
+    }
+  });
+}
 
 const defaultCacheOptions = {
   name: "_",
@@ -287,7 +332,7 @@ const errorHandler = (async function errorhandler(error, event) {
     statusCode,
     statusMessage,
     message,
-    stack: "",
+    stack: statusCode !== 404 ? `<pre>${stack.map((i) => `<span class="stack${i.internal ? " internal" : ""}">${i.text}</span>`).join("\n")}</pre>` : "",
     data: error.data
   };
   event.res.statusCode = errorObject.statusCode;
@@ -310,24 +355,28 @@ const errorHandler = (async function errorhandler(error, event) {
   const isErrorPage = event.req.url?.startsWith("/__nuxt_error");
   let html = !isErrorPage ? await $fetch(withQuery("/__nuxt_error", errorObject)).catch(() => null) : null;
   if (!html) {
-    const { template } = await import('./error-500.mjs');
+    const { template } = await import('file://E:/nuxt/Nepsap/node_modules/@nuxt/ui-templates/dist/templates/error-dev.mjs') ;
+    {
+      errorObject.description = errorObject.message;
+    }
     html = template(errorObject);
   }
   event.res.setHeader("Content-Type", "text/html;charset=UTF-8");
   event.res.end(html);
 });
 
-const _lazy_4IhsIX = () => import('./query.get.mjs');
-const _lazy_43hbPR = () => import('./hello.mjs');
-const _lazy_LF1Qk4 = () => import('./delete.get.mjs');
-const _lazy_8HZck9 = () => import('./add.post.mjs');
-const _lazy_W9Dtqa = () => import('./renderer.mjs');
+const _lazy_4IhsIX = () => Promise.resolve().then(function () { return query_get$1; });
+const _lazy_43hbPR = () => Promise.resolve().then(function () { return hello$1; });
+const _lazy_LF1Qk4 = () => Promise.resolve().then(function () { return delete_get$1; });
+const _lazy_8HZck9 = () => Promise.resolve().then(function () { return add_post$1; });
+const _lazy_W9Dtqa = () => Promise.resolve().then(function () { return renderer$1; });
 
 const handlers = [
   { route: '/api/query', handler: _lazy_4IhsIX, lazy: true, middleware: false, method: "get" },
   { route: '/api/hello', handler: _lazy_43hbPR, lazy: true, middleware: false, method: undefined },
   { route: '/api/delete', handler: _lazy_LF1Qk4, lazy: true, middleware: false, method: "get" },
   { route: '/api/add', handler: _lazy_8HZck9, lazy: true, middleware: false, method: "post" },
+  { route: '/__nuxt_error', handler: _lazy_W9Dtqa, lazy: true, middleware: false, method: undefined },
   { route: '/**', handler: _lazy_W9Dtqa, lazy: true, middleware: false, method: undefined }
 ];
 
@@ -335,7 +384,7 @@ function createNitroApp() {
   const config = useRuntimeConfig();
   const hooks = createHooks();
   const h3App = createApp({
-    debug: destr(false),
+    debug: destr(true),
     onError: errorHandler
   });
   h3App.use(config.app.baseURL, timingMiddleware);
@@ -377,11 +426,309 @@ function createNitroApp() {
 const nitroApp = createNitroApp();
 const useNitroApp = () => nitroApp;
 
-const localFetch = nitroApp.localFetch;
+const server = new Server(nitroApp.h3App.nodeHandler);
+function getAddress() {
+  if (provider === "stackblitz" || process.env.NITRO_NO_UNIX_SOCKET) {
+    return "0";
+  }
+  const socketName = `worker-${process.pid}-${threadId}.sock`;
+  if (isWindows) {
+    return join("\\\\.\\pipe\\nitro", socketName);
+  } else {
+    const socketDir = join(tmpdir(), "nitro");
+    mkdirSync(socketDir, { recursive: true });
+    return join(socketDir, socketName);
+  }
+}
+const listenAddress = getAddress();
+server.listen(listenAddress, () => {
+  const _address = server.address();
+  parentPort.postMessage({
+    event: "listen",
+    address: typeof _address === "string" ? { socketPath: _address } : { host: "localhost", port: _address.port }
+  });
+});
 {
-  process.on("unhandledRejection", (err) => console.error("[nitro] [dev] [unhandledRejection] " + err));
-  process.on("uncaughtException", (err) => console.error("[nitro] [dev] [uncaughtException] " + err));
+  process.on("unhandledRejection", (err) => console.error("[nitro] [dev] [unhandledRejection]", err));
+  process.on("uncaughtException", (err) => console.error("[nitro] [dev] [uncaughtException]", err));
 }
 
-export { useNitroApp as a, localFetch as l, useRuntimeConfig as u };
-//# sourceMappingURL=nitro-prerenderer.mjs.map
+const config = useRuntimeConfig();
+const firebaseConfig = {
+  apiKey: config.FIREBASE_API_KEY,
+  authDomain: "nepsap-website.firebaseapp.com",
+  projectId: "nepsap-website",
+  storageBucket: "nepsap-website.appspot.com",
+  messagingSenderId: "1012381467635",
+  appId: "1:1012381467635:web:f655c0ce88fcfcee030886",
+  measurementId: "G-8W345Q1GKP"
+};
+const app = initializeApp(firebaseConfig);
+console.log("FireBase 1");
+const firestoreDB = getFirestore(app);
+
+const queryByCollection = async (col) => {
+  const colRef = collection(firestoreDB, col);
+  const snapshot = await getDocs(colRef);
+  const docs = Array.from(snapshot.docs).map((doc2) => {
+    return {
+      ...doc2.data(),
+      id: doc2.id
+    };
+  });
+  return docs;
+};
+const add = async (col, document) => {
+  const colRef = collection(firestoreDB, col);
+  const docRef = await addDoc(colRef, document);
+  return docRef;
+};
+const del = async (col, id) => {
+  const docRef = doc(firestoreDB, col, id);
+  return await deleteDoc(docRef);
+};
+
+const query_get = defineEventHandler(async (event) => {
+  try {
+    const query = useQuery(event.req);
+    const docs = await queryByCollection(query.col);
+    return { result: docs };
+  } catch (error) {
+    return { result: [], error: error.message };
+  }
+});
+
+const query_get$1 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  'default': query_get
+});
+
+const hello = async (req, res) => {
+  const user = "Working";
+  return user;
+};
+
+const hello$1 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  'default': hello
+});
+
+const delete_get = defineEventHandler(async (event) => {
+  try {
+    const { col, id } = useQuery(event.req);
+    await del(col, id);
+    return { result: id };
+  } catch (error) {
+    return { error: error.message };
+  }
+});
+
+const delete_get$1 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  'default': delete_get
+});
+
+const add_post = defineEventHandler(async (event) => {
+  try {
+    const query = useQuery(event.req);
+    const body = await useBody(event.req);
+    const docRef = await add(query.col, body);
+    return { result: docRef };
+  } catch (error) {
+    return { error: error.message };
+  }
+});
+
+const add_post$1 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  'default': add_post
+});
+
+function buildAssetsURL(...path) {
+  return joinURL(publicAssetsURL(), useRuntimeConfig().app.buildAssetsDir, ...path);
+}
+function publicAssetsURL(...path) {
+  const publicBase = useRuntimeConfig().app.cdnURL || useRuntimeConfig().app.baseURL;
+  return path.length ? joinURL(publicBase, ...path) : publicBase;
+}
+
+const getClientManifest = () => import('file://E:/nuxt/Nepsap/.nuxt/dist/server/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
+const getServerEntry = () => import('file://E:/nuxt/Nepsap/.nuxt/dist/server/server.mjs').then((r) => r.default || r);
+const getSSRRenderer = lazyCachedFunction(async () => {
+  const manifest = await getClientManifest();
+  if (!manifest) {
+    throw new Error("client.manifest is not available");
+  }
+  const createSSRApp = await getServerEntry();
+  if (!createSSRApp) {
+    throw new Error("Server bundle is not available");
+  }
+  const options = {
+    manifest,
+    renderToString: renderToString$1,
+    buildAssetsURL
+  };
+  const renderer = createRenderer(createSSRApp, options);
+  async function renderToString$1(input, context) {
+    const html = await renderToString(input, context);
+    if (process.env.NUXT_VITE_NODE_OPTIONS) {
+      renderer.rendererContext.updateManifest(await getClientManifest());
+    }
+    return `<div id="__nuxt">${html}</div>`;
+  }
+  return renderer;
+});
+const getSPARenderer = lazyCachedFunction(async () => {
+  const manifest = await getClientManifest();
+  const options = {
+    manifest,
+    renderToString: () => '<div id="__nuxt"></div>',
+    buildAssetsURL
+  };
+  const renderer = createRenderer(() => () => {
+  }, options);
+  const result = await renderer.renderToString({});
+  const renderToString = (ssrContext) => {
+    const config = useRuntimeConfig();
+    ssrContext.payload = {
+      serverRendered: false,
+      config: {
+        public: config.public,
+        app: config.app
+      },
+      data: {},
+      state: {}
+    };
+    ssrContext.renderMeta = ssrContext.renderMeta ?? (() => ({}));
+    return Promise.resolve(result);
+  };
+  return { renderToString };
+});
+const PAYLOAD_URL_RE = /\/_payload(\.[a-zA-Z0-9]+)?.js(\?.*)?$/;
+const renderer = defineRenderHandler(async (event) => {
+  const ssrError = event.req.url?.startsWith("/__nuxt_error") ? getQuery(event) : null;
+  let url = ssrError?.url || event.req.url;
+  const isRenderingPayload = PAYLOAD_URL_RE.test(url);
+  if (isRenderingPayload) {
+    url = url.substring(0, url.lastIndexOf("/")) || "/";
+    event.req.url = url;
+  }
+  const ssrContext = {
+    url,
+    event,
+    req: event.req,
+    res: event.res,
+    runtimeConfig: useRuntimeConfig(),
+    noSSR: !!event.req.headers["x-nuxt-no-ssr"] || (false),
+    error: !!ssrError,
+    nuxt: void 0,
+    payload: ssrError ? { error: ssrError } : {}
+  };
+  const renderer = ssrContext.noSSR ? await getSPARenderer() : await getSSRRenderer();
+  const _rendered = await renderer.renderToString(ssrContext).catch((err) => {
+    if (!ssrError) {
+      throw ssrContext.payload?.error || err;
+    }
+  });
+  await ssrContext.nuxt?.hooks.callHook("app:rendered", { ssrContext });
+  if (!_rendered) {
+    return void 0;
+  }
+  if (ssrContext.payload?.error && !ssrError) {
+    throw ssrContext.payload.error;
+  }
+  if (isRenderingPayload) {
+    const response2 = renderPayloadResponse(ssrContext);
+    return response2;
+  }
+  const renderedMeta = await ssrContext.renderMeta?.() ?? {};
+  const inlinedStyles = "";
+  const htmlContext = {
+    htmlAttrs: normalizeChunks([renderedMeta.htmlAttrs]),
+    head: normalizeChunks([
+      renderedMeta.headTags,
+      null,
+      _rendered.renderResourceHints(),
+      _rendered.renderStyles(),
+      inlinedStyles,
+      ssrContext.styles
+    ]),
+    bodyAttrs: normalizeChunks([renderedMeta.bodyAttrs]),
+    bodyPreprend: normalizeChunks([
+      renderedMeta.bodyScriptsPrepend,
+      ssrContext.teleports?.body
+    ]),
+    body: [
+      _rendered.html
+    ],
+    bodyAppend: normalizeChunks([
+      `<script>window.__NUXT__=${devalue(ssrContext.payload)}<\/script>`,
+      _rendered.renderScripts(),
+      renderedMeta.bodyScripts
+    ])
+  };
+  const nitroApp = useNitroApp();
+  await nitroApp.hooks.callHook("render:html", htmlContext, { event });
+  const response = {
+    body: renderHTMLDocument(htmlContext),
+    statusCode: event.res.statusCode,
+    statusMessage: event.res.statusMessage,
+    headers: {
+      "Content-Type": "text/html;charset=UTF-8",
+      "X-Powered-By": "Nuxt"
+    }
+  };
+  return response;
+});
+function lazyCachedFunction(fn) {
+  let res = null;
+  return () => {
+    if (res === null) {
+      res = fn().catch((err) => {
+        res = null;
+        throw err;
+      });
+    }
+    return res;
+  };
+}
+function normalizeChunks(chunks) {
+  return chunks.filter(Boolean).map((i) => i.trim());
+}
+function joinTags(tags) {
+  return tags.join("");
+}
+function joinAttrs(chunks) {
+  return chunks.join(" ");
+}
+function renderHTMLDocument(html) {
+  return `<!DOCTYPE html>
+<html ${joinAttrs(html.htmlAttrs)}>
+<head>${joinTags(html.head)}</head>
+<body ${joinAttrs(html.bodyAttrs)}>${joinTags(html.bodyPreprend)}${joinTags(html.body)}${joinTags(html.bodyAppend)}</body>
+</html>`;
+}
+function renderPayloadResponse(ssrContext) {
+  return {
+    body: `export default ${devalue(splitPayload(ssrContext).payload)}`,
+    statusCode: ssrContext.event.res.statusCode,
+    statusMessage: ssrContext.event.res.statusMessage,
+    headers: {
+      "content-type": "text/javascript;charset=UTF-8",
+      "x-powered-by": "Nuxt"
+    }
+  };
+}
+function splitPayload(ssrContext) {
+  const { data, state, prerenderedAt, ...initial } = ssrContext.payload;
+  return {
+    initial: { ...initial, prerenderedAt },
+    payload: { data, state, prerenderedAt }
+  };
+}
+
+const renderer$1 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  'default': renderer
+});
+//# sourceMappingURL=index.mjs.map
