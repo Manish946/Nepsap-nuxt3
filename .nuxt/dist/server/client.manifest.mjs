@@ -1,1 +1,1 @@
-export { default } from "file:///E:/nuxt/Nepsap/node_modules/@nuxt/vite-builder/dist/runtime/client.manifest.mjs"
+export { default } from "file:///D:/Github/Nepsap-nuxt3/node_modules/@nuxt/vite-builder/dist/runtime/client.manifest.mjs"
