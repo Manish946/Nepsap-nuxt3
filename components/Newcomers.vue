@@ -27,7 +27,6 @@ export default({
               <img
                 height="50"
                 width="50"
-                src="~/assets/logos/cpr-t.svg"
                 alt=""
               />
               <p class="information-container-text">CPR</p>
@@ -138,7 +137,6 @@ export default({
               <img
                 height="50"
                 width="50"
-                src="~/assets/logos/rental.svg"
                 alt=""
               />
               <p class="information-container-text rental-text-color">Rental</p>
@@ -220,7 +218,6 @@ export default({
               <img
                 height="50"
                 width="50"
-                src="~/assets/logos/work.svg"
                 alt=""
               />
               <p class="information-container-text work-text-color">
@@ -313,7 +310,6 @@ export default({
               <img
                 height="50"
                 width="50"
-                src="~/assets/logos/transport.svg"
                 alt=""
               />
               <p class="information-container-text transport-text-color">Transportation</p>
@@ -371,7 +367,6 @@ export default({
               <img
                 height="50"
                 width="50"
-                src="~/assets/logos/skat.svg"
                 alt=""
               />
               <p class="information-container-text tax-text-color">
@@ -429,7 +424,6 @@ export default({
               <img
                 height="50"
                 width="50"
-                src="~/assets/logos/danish.svg"
                 alt=""
               />
               <p class="information-container-text danish-text-color">Danish</p>
@@ -496,7 +490,6 @@ export default({
               <img
                 height="50"
                 width="50"
-                src="~/assets/logos/sociallife.svg"
                 alt=""
               />
               <p class="information-container-text sociallife-text-color">
