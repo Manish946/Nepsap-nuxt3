@@ -4,7 +4,7 @@ export { useAsyncData, useLazyAsyncData, refreshNuxtData, defineNuxtComponent, u
 export { withCtx, withDirectives, withKeys, withMemo, withModifiers, withScopeId, onActivated, onBeforeMount, onBeforeUnmount, onBeforeUpdate, onDeactivated, onErrorCaptured, onMounted, onRenderTracked, onRenderTriggered, onServerPrefetch, onUnmounted, onUpdated, computed, customRef, isProxy, isReactive, isReadonly, isRef, markRaw, proxyRefs, reactive, readonly, ref, shallowReactive, shallowReadonly, shallowRef, toRaw, toRef, toRefs, triggerRef, unref, watch, watchEffect, isShallow, effect, effectScope, getCurrentScope, onScopeDispose, defineComponent, defineAsyncComponent, resolveComponent, getCurrentInstance, h, inject, nextTick, provide, useAttrs, useCssModule, useCssVars, useSlots, useTransitionState } from 'vue';
 export { endpoints } from '../composables/useEndpoints';
 export { gmailSignin, initUser, signOutUser } from '../composables/useFirebase';
-export { getFirestoreData, addFirestoreData, deleteFirestoreData } from '../composables/useFirestore';
 export { useContent, useFirebaseUser } from '../composables/useStates';
+export { getFirestoreData, addFirestoreData, deleteFirestoreData } from '../composables/useFirestore';
 export { definePageMeta } from '../node_modules/nuxt/dist/pages/runtime/composables';
 export { useLink } from 'vue-router';
