@@ -3,3 +3,8 @@ node_modules
 nuxt.d.ts
 .output
 .env
+dist
+.nuxt
+.nuxt/dist/server
+.nuxt/
+.nuxt/*
