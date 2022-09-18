@@ -68,7 +68,7 @@ export default({
   >
     <div class="navigation-container">
       <nuxt-link to="/" class="logo">
-        <img height="30" width="224" src="~/public/assets/Nepsaplogo.svg" alt="" />
+        <img height="30" width="224" src="../public/assets/Nepsaplogo.svg" alt="" />
       </nuxt-link>
 
       <div class="nav-div">
