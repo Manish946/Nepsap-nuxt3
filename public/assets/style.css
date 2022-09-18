@@ -21,7 +21,7 @@ html,body {
   
   .home {
     background-color: rgb(18 29 51);
-    background-image: url(~/assets/background.svg);
+    background-image: url(~/public/assets/background.svg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center bottom;
@@ -35,7 +35,7 @@ html,body {
   
   .about{
     background-color: rgb(18 29 51);
-    /* background-image: url(~/assets/background.svg); */
+    /* background-image: url(~/public/assets/background.svg); */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center bottom;
@@ -49,7 +49,7 @@ html,body {
   
   .contact{
     background-color: rgb(18 29 51);
-    /* background-image: url(~/assets/background.svg); */
+    /* background-image: url(~/public/assets/background.svg); */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center bottom;
@@ -63,7 +63,7 @@ html,body {
   
   .members{
     background-color: rgb(18 29 51);
-    /* background-image: url(~/assets/MemberBackground.svg); */
+    /* background-image: url(~/public/assets/MemberBackground.svg); */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center bottom;

@@ -17,7 +17,7 @@ export default({
       <div class="overview-item">
         <div class="item-header">
             <div>
-            <img height="50" width="50" src="~/assets/cpr.svg" alt="" />
+            <img height="50" width="50" src="~/public/assets/cpr.svg" alt="" />
             
             </div>
           <span class="item-text">CPR</span>
@@ -36,7 +36,7 @@ export default({
       </div>
       <div class="overview-item">
         <div class="item-header">
-          <img height="50" width="50" src="~/assets/studentHouse.svg" alt="" />
+          <img height="50" width="50" src="~/public/assets/studentHouse.svg" alt="" />
          
           <span class="item-text">Student</span>
         </div>
@@ -55,7 +55,7 @@ export default({
       <div class="overview-item">
         <div class="item-header">
 
-          <img height="50" width="50" src="~/assets/rentalHouse.svg" alt="" />
+          <img height="50" width="50" src="~/public/assets/rentalHouse.svg" alt="" />
           
           <span class="item-text">Rental</span>
         </div>
@@ -73,7 +73,7 @@ export default({
       </div>
       <div class="overview-item">
         <div class="item-header">
-          <img height="50" width="50" src="~/assets/skat.svg" alt="" />
+          <img height="50" width="50" src="~/public/assets/skat.svg" alt="" />
           
           <span class="item-text">TAX</span>
         </div>
