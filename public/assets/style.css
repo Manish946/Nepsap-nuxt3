@@ -21,7 +21,7 @@ html,body {
   
   .home {
     background-color: rgb(18 29 51);
-    background-image: url(assets/background.svg);
+    background-image: url(~/public/assets/background.svg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center bottom;
