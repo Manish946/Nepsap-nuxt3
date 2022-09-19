@@ -49,9 +49,9 @@ onMounted(async () => {
    height: 376px;
    padding: 20px 0px;
    margin: 20px;
-   background: #f2f3f7;
-   box-shadow: 0.3em 0.3em 0.5em #d2dce9,
-               -0.3em -0.3em 0.5em #ffffff;
+   background: #f0f0f3;
+   box-shadow: 0.3em 0.3em 0.5em #326fac,
+               -0.3em -0.3em 0.5em #517ad3;
    border-radius: 20px;
 }
 .container .card .content
