@@ -30,7 +30,7 @@ export default({
       <ul class="social-wrapper-links">
         <li class="social-item">
           <a
-            class="fa fa-facebook"
+            class="fa fa-facebook facebook-circle"
             href="https://www.facebook.com/NepSAPDenmark"
             aria-label="link"
             target="_blank"
@@ -39,7 +39,7 @@ export default({
 
         <li class="social-item">
           <a
-            class="fa fa-google"
+            class="fa fa-google google-circle"
             href="mailto: nepsap.denmark@gmail.com"
             aria-label="link"
             target="_blank"
@@ -47,7 +47,7 @@ export default({
         </li>
         <li class="social-item">
           <a
-            class="fa fa-linkedin"
+            class="fa fa-linkedin linkedin-circle"
             href="https://www.linkedin.com/groups/8681164/"
             aria-label="link"
             target="_blank"
@@ -111,7 +111,7 @@ export default({
   border-radius: 50%;
 }
 
-.fa-google {
+.google-circle {
   background: #dd4b39;
   color: white;
   display: flex;
@@ -119,7 +119,7 @@ export default({
   align-items: center;
 }
 
-.fa-facebook {
+.facebook-circle {
   background: #3b5998;
   color: white;
   display: flex;
@@ -127,7 +127,7 @@ export default({
   align-items: center;
 }
 
-.fa-linkedin {
+.linkedin-circle {
   background: #007bb5;
   color: white;
   display: flex;

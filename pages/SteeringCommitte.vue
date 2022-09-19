@@ -2,8 +2,8 @@
   <div>
     <Nav></Nav>
     <main>
-      <div class="home">
-
+      <div class="steeringCommitte">
+        <Settering-committe-component></Settering-committe-component>
       </div>
     </main>
 

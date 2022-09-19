@@ -63,16 +63,28 @@ html,body {
   
   .members{
     background-color: rgb(18 29 51);
-    /* background-image: url(~/public/assets/MemberBackground.svg); */
+    /* background-image: url(~/public/assets/background.svg); */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center bottom;
     color: rgb(255, 255, 255);
-    height: 65vh;
+    height: 91.7vh;
     padding-top: 4.8rem;
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  .steeringCommitte{
+    background-color: rgb(18 29 51);
+    /* background-image: url(~/public/assets/background.svg); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center bottom;
+    color: rgb(255, 255, 255);
+    height: 91.7vh;
+    padding-top: 4.8rem;
+    display: flex;
+    justify-content: center;
   }
   
   .primary-color{
