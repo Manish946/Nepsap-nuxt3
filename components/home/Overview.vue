@@ -162,6 +162,7 @@ export default({
   display: flex;
   gap: 40px;
   padding: 0 0 0 1.8rem;
+  scroll-snap-type: x mandatory;
 }
 
 .overview-item {
@@ -172,6 +173,7 @@ export default({
   color: black;
   min-width: 225px;
   min-height: 100px;
+  scroll-snap-align: center;
 }
 
 .overview-item:hover {
