@@ -91,7 +91,7 @@ onMounted(async () => {
 }
 .container .card {
   width: 360px;
-  height: 376px;
+  height: 436px;
   padding: 20px 0px;
   margin: 20px;
   background: #f0f0f3;
