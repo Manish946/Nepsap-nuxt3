@@ -32,8 +32,15 @@ export default defineNuxtConfig({
   type: ['vuetify'],
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['public/assets/style.css'],
-
+  css: ['public/assets/style.css', "vuetify/lib/styles/main.sass"],
+    build: {
+        transpile: ["vuetify"]
+    },
+    vite: {
+        define: {
+            "process.env.DEBUG": false
+        }
+    },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

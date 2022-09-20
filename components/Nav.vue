@@ -75,9 +75,6 @@ export default({
         <nav id="nav" class="nav">
           <ul class="nav-wrapper">
             <li class="nav-link">
-              <a href="#">Information</a>
-            </li>
-            <li class="nav-link">
               <nuxt-link to="/events">Events</nuxt-link>
             </li>
             <li class="nav-link">

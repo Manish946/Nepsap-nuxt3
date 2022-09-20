@@ -104,10 +104,9 @@ export default({
 .fa {
   padding: 10px;
   font-size: 20px;
-  width: 20px;
+  width: 40px;
   text-align: center;
   text-decoration: none;
-
   border-radius: 50%;
 }
 

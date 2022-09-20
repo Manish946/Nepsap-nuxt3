@@ -25,7 +25,7 @@ export default ({
       <div>
         <h1 class="footer-header">Social</h1>
         <ul class="social-links">
-          <li>
+          <li class="footer-links">
             <a
               href="https://www.facebook.com/NepSAPDenmark"
               target="_blank"
@@ -35,7 +35,7 @@ export default ({
               <p class="link-text">Facebook</p>
             </a>
           </li>
-          <li>
+          <li class="footer-links">
             <a
               href="https://www.linkedin.com/groups/8681164/"
               target="_blank"
@@ -45,13 +45,13 @@ export default ({
               <p class="link-text">Linkedin</p>
             </a>
           </li>
-          <li>
+          <li class="footer-links">
             <a
               href="mailto: nepsap.denmark@gmail.com"
               target="_blank"
               class="social-link"
             >
-              <p class="fa fa-google google-circle"></p>
+              <p class="fa fa-google google-circle "></p>
               <p class="link-text">Gmail</p>
             </a>
           </li>
@@ -63,6 +63,10 @@ export default ({
 
 
 <style>
+.footer-links{
+  margin-bottom: 20px;
+}
+
 .footer-header {
   font-size: 34px;
   color: rgb(18 29 51);
