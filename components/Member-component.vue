@@ -1,35 +1,48 @@
 <template>
-    <h1>Members</h1>
-    <pre>{{members}}</pre>
-    <button @click="handleSubmit">Add To Firebase</button>
-    <button  @click="deleteMember">Delete</button>
+  <h1>Members</h1>
+  <client-only>
+  <pre>{{ members }}</pre>
+  </client-only>
+  <button @click="handleSubmit">Add To Firebase</button>
+  <button @click="deleteMember">Delete</button>
 </template>
 
-<script setup>
-import {addFirestoreData} from "../composables/useFirestore"
-const formState = ref({
-  Name: "Manish",
-  Email: "Shrestha",
-  game: "nothing game"
 
-});
-  console.log(formState.value.Name)
+<script lang="ts">
+import { addFirestoreData } from "../composables/useFirestore";
+ const formState = ref<Member>({
+    name:"Manish Shrestha",
+    timestamp: new Date()
+  })
 
-const handleSubmit = async () => {
-  const {result} = await addFirestoreData("members", formState.value);
-  await getFirestoreData("members");
-};
+export interface Member{
+  name: string,
+  timestamp:Date
+}
 
-const deleteMember = async () => {
-  await deleteFirestoreData("members", "XOa2vfh7bx7ZVzc828bI");
-  await getFirestoreData("members");
-};
+export default {
 
-const members = ref();
-onMounted(async()=>{
-  const { result } = await $fetch("/api/query?col=members")
+  async setup(){
+  const members = ref<Member>()
+  const { result } = await $fetch("/api/query?col=members");
+  let data:Member = JSON.parse(JSON.stringify(result))
   
-  console.log(result)
-  members.value = result;
-});
+  members.value = data
+    return{
+      members
+    }
+  },
+  methods: {
+    async handleSubmit() {
+      const { result } = await addFirestoreData("members", formState.value);
+      await getFirestoreData("members");
+    },
+    async deleteMember() {
+      await deleteFirestoreData("members", "XOa2vfh7bx7ZVzc828bI");
+      await getFirestoreData("members");
+    },
+  },
+};
+
+
 </script>
