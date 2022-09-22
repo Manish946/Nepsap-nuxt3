@@ -1,5 +1,12 @@
 <template>
+    <div>
+    <div class="steeringCommitte-header" v-if="members">
+      <h1>Steering Committe</h1>
+      <h3>The steering committe members are responsible to handle and manage NepSAP.</h3>
+    </div>
+    </div>
   <div class="container">
+
     <div class="card" v-for="member in members" :key="member.uid">
       <div class="content">
         <div class="imgBx">
@@ -57,6 +64,13 @@ onMounted(async () => {
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Bellota+Text:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+
+.steeringCommitte-header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 
 /* creating css loader */
 .steering-loader {

@@ -1,4 +1,9 @@
 <template>
+
+<div class="member-header" v-if="members">
+      <h1>Members</h1>
+      <h3>Following is the list of the NepSAP members. We periodically update our members list.</h3>
+    </div>
   <div class="members-wrapper">
     <div v-for="member in members" :key="member.uid" >
     <h1>Name : {{member.Name}}</h1>
@@ -6,8 +11,8 @@
     </div>
 
   </div>
-  <button @click="handleSubmit">Add To Firebase</button>
-  <button @click="deleteMember">Delete</button>
+  <!-- <button @click="handleSubmit">Add To Firebase</button>
+  <button @click="deleteMember">Delete</button> -->
 </template>
 
 
@@ -47,6 +52,13 @@ export default {
 </script>
 
 <style>
+.member-header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .members-wrapper{
   display: flex;
   justify-content: space-between;

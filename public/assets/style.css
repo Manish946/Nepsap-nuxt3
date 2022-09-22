@@ -73,6 +73,7 @@ html,body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
   }
   .steeringCommitte{
     background-color: rgb(18 29 51);
@@ -85,6 +86,7 @@ html,body {
     padding-top: 4.8rem;
     display: flex;
     justify-content: center;
+    flex-direction: column;
   }
   
   .primary-color{
