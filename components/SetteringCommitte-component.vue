@@ -42,7 +42,7 @@ const members = ref();
 onMounted(async () => {
   steeringloading.value = true
   console.log("data loading");
-  const { result } = await $fetch("/api/query?col=steeringCommitte");
+  const { result } = await getFirestoreData("steeringCommitte");
   if (result) {
     console.log("data fetched");
     steeringloading.value = false

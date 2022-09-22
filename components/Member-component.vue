@@ -15,7 +15,7 @@
 import { addFirestoreData } from "../composables/useFirestore";
 import {IMember} from "../types/IMember"
  const formState = ref<IMember>({
-    Name:"Manish Shrestha",
+    Name:"XQC",
     timestamp: new Date()
   })
 
@@ -23,11 +23,12 @@ export default {
 
   async setup(){
   const members = ref<IMember>()
-  const { result } = await $fetch("/api/query?col=members");
-  var data = JSON.parse(JSON.stringify(result))
-  members.value = result
+  const result = await getFirestoreData("members");
+  const data = JSON.parse(JSON.stringify(result))
+  console.log(data.result.sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1))
+  members.value = data.result
     return{
-      members
+     members
     }
   },
   methods: {

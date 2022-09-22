@@ -1,9 +1,12 @@
+import { IMember } from "~~/types/IMember";
+
 export const getFirestoreData = async (col: string) => {
     try {
       const content = useContent();
   
-      const { result }:any = await $fetch(endpoints.firestore.query(col));
+      const result = await $fetch(endpoints.firestore.query(col));
       content.value[col] = result;
+      return result
     } catch (error) {
       console.log(error.message);
       return [];

@@ -10,12 +10,13 @@ import {
     setDoc,
     collectionGroup,
     Timestamp,
+    Query,
   } from "firebase/firestore";
   import { firestoreDB } from "./firebase";
   
   export const queryByCollection = async (col: string) => {
     // @ts-ignore
-    const colRef = collection(firestoreDB, col);
+    const colRef = collection(firestoreDB, col)
   
     const snapshot = await getDocs(colRef);
   
@@ -35,7 +36,7 @@ import {
   
   export const add = async (col: string, document: Object) => {
     // @ts-ignore
-    const colRef = collection(firestoreDB, col);
+    const colRef = collection(firestoreDB, col)
   
     const docRef = await addDoc(colRef, document);
   
