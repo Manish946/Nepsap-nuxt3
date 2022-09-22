@@ -25,7 +25,7 @@ export default {
   const members = ref<IMember>()
   const result = await getFirestoreData("members");
   const data = JSON.parse(JSON.stringify(result))
-  console.log(data.result.sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1))
+  data.result.sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1)
   members.value = data.result
     return{
      members

@@ -42,12 +42,15 @@ const members = ref();
 onMounted(async () => {
   steeringloading.value = true
   console.log("data loading");
-  const { result } = await getFirestoreData("steeringCommitte");
+  const  result = await getFirestoreData("steeringCommitte");
   if (result) {
     console.log("data fetched");
     steeringloading.value = false
+    
   }
-  members.value = result;
+  const data = JSON.parse(JSON.stringify(result))
+  data.result.sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1)
+  members.value = data.result;
 });
 
 </script>
