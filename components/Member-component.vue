@@ -1,8 +1,11 @@
 <template>
-  <h1>Members</h1>
-  <client-only>
-  <pre>{{ members }}</pre>
-  </client-only>
+  <div class="members-wrapper">
+    <div v-for="member in members" :key="member.uid" >
+    <h1>Name : {{member.Name}}</h1>
+    <h2>TimeStamp : {{member.timestamp}}</h2>
+    </div>
+
+  </div>
   <button @click="handleSubmit">Add To Firebase</button>
   <button @click="deleteMember">Delete</button>
 </template>
@@ -10,24 +13,19 @@
 
 <script lang="ts">
 import { addFirestoreData } from "../composables/useFirestore";
- const formState = ref<Member>({
-    name:"Manish Shrestha",
+import {IMember} from "../types/IMember"
+ const formState = ref<IMember>({
+    Name:"Manish Shrestha",
     timestamp: new Date()
   })
-
-export interface Member{
-  name: string,
-  timestamp:Date
-}
 
 export default {
 
   async setup(){
-  const members = ref<Member>()
+  const members = ref<IMember>()
   const { result } = await $fetch("/api/query?col=members");
-  let data:Member = JSON.parse(JSON.stringify(result))
-  
-  members.value = data
+  var data = JSON.parse(JSON.stringify(result))
+  members.value = result
     return{
       members
     }
@@ -46,3 +44,12 @@ export default {
 
 
 </script>
+
+<style>
+.members-wrapper{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+</style>
