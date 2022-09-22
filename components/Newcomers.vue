@@ -1,13 +1,13 @@
 <script lang="ts">
-export default({
+export default{
+  data: () => ({
+      isActive: false,
+    }),
   name: 'Newcomers-Component',
-  data() {
-    return {}
-  },
   methods: {},
   components: {},
   mounted() {},
-})
+}
 </script>
 
 <template>
@@ -19,6 +19,14 @@ export default({
       </h2>
     </div>
 
+ <v-lazy
+      v-model="isActive"
+      :options="{
+        threshold: .5
+      }"
+      min-height="200"
+      transition="fade-transition"
+    >
     <div class="information-box">
       <div class="information-container-wrapper">
         <div class="information-container">
@@ -71,7 +79,18 @@ export default({
         </div>
       </div>
     </div>
+ </v-lazy>
 
+
+
+  <v-lazy
+      v-model="isActive"
+      :options="{
+        threshold: .5
+      }"
+      min-height="200"
+      transition="fade-transition"
+    >
     <div class="information-box">
       <div class="information-container-wrapper student-housing-secondary">
         <div class="information-container">
@@ -134,7 +153,17 @@ export default({
         </div>
       </div>
     </div>
+ </v-lazy>
 
+
+  <v-lazy
+      v-model="isActive"
+      :options="{
+        threshold: .5
+      }"
+      min-height="200"
+      transition="fade-transition"
+    >
     <div class="information-box">
       <div class="information-container-wrapper rental-background">
         <div class="information-container">
@@ -211,7 +240,18 @@ export default({
         </div>
       </div>
     </div>
+  </v-lazy>
 
+
+
+  <v-lazy
+      v-model="isActive"
+      :options="{
+        threshold: .5
+      }"
+      min-height="200"
+      transition="fade-transition"
+    >
     <div class="information-box">
       <div class="information-container-wrapper work-background">
         <div class="information-container">
@@ -309,7 +349,18 @@ export default({
         </div>
       </div>
     </div>
+  </v-lazy>
 
+
+
+  <v-lazy
+      v-model="isActive"
+      :options="{
+        threshold: .5
+      }"
+      min-height="200"
+      transition="fade-transition"
+    >
     <div class="information-box">
       <div class="information-container-wrapper transport-background">
         <div class="information-container">
@@ -362,7 +413,17 @@ export default({
         </div>
       </div>
     </div>
+  </v-lazy>
 
+
+  <v-lazy
+      v-model="isActive"
+      :options="{
+        threshold: .5
+      }"
+      min-height="200"
+      transition="fade-transition"
+    >
     <div class="information-box">
       <div class="information-container-wrapper tax-background">
         <div class="information-container">
@@ -425,7 +486,18 @@ export default({
         </div>
       </div>
     </div>
+  </v-lazy>
 
+
+
+  <v-lazy
+      v-model="isActive"
+      :options="{
+        threshold: .5
+      }"
+      min-height="200"
+      transition="fade-transition"
+    >
     <div class="information-box">
       <div class="information-container-wrapper danish-background">
         <div class="information-container">
@@ -487,7 +559,17 @@ export default({
         </div>
       </div>
     </div>
+  </v-lazy>
 
+
+  <v-lazy
+      v-model="isActive"
+      :options="{
+        threshold: .5
+      }"
+      min-height="200"
+      transition="fade-transition"
+    >
     <div class="information-box">
       <div class="information-container-wrapper sociallife-background">
         <div class="information-container">
@@ -592,6 +674,8 @@ export default({
         </div>
       </div>
     </div>
+
+  </v-lazy>
   </div>
 </template>
 
