@@ -8,14 +8,23 @@ const formState = ref<IMember>({
 
 export default {
   async setup() {
+    try{
     const members = ref<IMember>();
     const result = await getFirestoreData("members");
     const data = JSON.parse(JSON.stringify(result));
     data.result.sort((a, b) => (a.timestamp > b.timestamp ? 1 : -1));
+    if(data.result){
     members.value = data.result;
+    console.log(members.value)
+    }
+
     return {
       members,
     };
+        }catch(e){
+        console.log(e.error)
+    }
+   
   },
   methods: {
     async handleSubmit() {
@@ -29,6 +38,7 @@ export default {
   },
 };
 </script>
+
 <template>
   <div class="member-header" v-if="members">
     <h1>Members</h1>
@@ -38,7 +48,7 @@ export default {
     </h3>
   </div>
 
-<v-expansion-panels variant="popout" class="pa-7">
+<v-expansion-panels variant="popout" class="pa-7" v-if="members">
     <v-expansion-panel
       v-for="(member) in members"
       :key="member.uid"
@@ -55,22 +65,22 @@ export default {
             sm="2"
             md="1"
           >
-            <v-avatar
+            <!-- <v-avatar
               size="56px"
             >
               <v-img
-                v-if="member.profile"
                 alt="Avatar"
-               v-bind:src="member.profile"
+                v-bind:src="member.profile"
               ></v-img>
-              <v-img v-else alt="Avatar" src="https://firebasestorage.googleapis.com/v0/b/nepsap-website.appspot.com/o/Members%2Fdefault.png?alt=media&token=6ae99e14-2486-4a05-8de5-71847f1de7ab">
+              <v-img alt="Avatar" src="https://firebasestorage.googleapis.com/v0/b/nepsap-website.appspot.com/o/Members%2Fdefault.png?alt=media&token=6ae99e14-2486-4a05-8de5-71847f1de7ab">
 
               </v-img>
-              <!-- <v-icon
-                v-else
-                :color="message.color"
-                :icon="message.icon"
-              ></v-icon> -->
+
+            </v-avatar> -->
+            <v-avatar >
+              
+              <img v-if="member.profile != 'null'" v-bind:src="member.profile" alt="" height="40" width="40" />
+              <img v-if="member.profile == 'null'" height="40" width="40" src="https://firebasestorage.googleapis.com/v0/b/nepsap-website.appspot.com/o/Members%2Fdefault.png?alt=media&token=6ae99e14-2486-4a05-8de5-71847f1de7ab">
             </v-avatar>
           </v-col>
 
@@ -120,35 +130,11 @@ export default {
             ></a>
           </v-col>
         </v-row>
-        <v-col>
-          <v-col
-            cols="4"
-            sm="2"
-            md="1"
-          >
-            <v-avatar
-              size="56px"
-            >
-              <v-img
-                v-if="member.profile"
-                alt="Avatar"
-               v-bind:src="member.profile"
-              ></v-img>
-              <v-img v-else alt="Avatar" src="https://firebasestorage.googleapis.com/v0/b/nepsap-website.appspot.com/o/Members%2Fdefault.png?alt=media&token=6ae99e14-2486-4a05-8de5-71847f1de7ab">
-
-              </v-img>
-              <!-- <v-icon
-                v-else
-                :color="message.color"
-                :icon="message.icon"
-              ></v-icon> -->
-            </v-avatar>
-          </v-col>
-        </v-col>
       </v-expansion-panel-title>
-
       <v-expansion-panel-text>
-        <v-card-text v-text="member.Expertise"></v-card-text>
+        <v-card-text v-text="'Degree : '+member.Degree"></v-card-text>
+        <v-card-text v-text="'University : '+member.University"></v-card-text>
+        <v-card-text v-text="'Position : '+member.Position"></v-card-text>
       </v-expansion-panel-text>
     </v-expansion-panel>
   </v-expansion-panels>
@@ -164,7 +150,7 @@ export default {
 
 .member-links{
   font-size: 25px;
-  color: #121d33;
+  color: #0f24dd;
 }
 
 .member-header {

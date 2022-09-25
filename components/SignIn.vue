@@ -2,7 +2,12 @@
 <div class="signin-wrapper">
   <p class="signin-header">NEPSAP</p>
 
-  <button @click="gmailLogin" class="gmail-button">Sign In</button>
+  <v-btn
+       @click="gmailLogin"
+        color="red"
+         prepend
+      >Sign In</v-btn>
+      
     <p class="signin-subheader">Sign In with Google</p>
 </div>
 
