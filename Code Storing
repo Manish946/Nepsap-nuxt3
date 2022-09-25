@@ -1,45 +1,105 @@
+<script lang="ts">
+import { addFirestoreData } from "../composables/useFirestore";
+import { IMember } from "../types/IMember";
+const formState = ref<IMember>({
+  Name: "XQC",
+  timestamp: new Date(),
+});
+
+export default {
+  async setup() {
+    const members = ref<IMember>();
+    const result = await getFirestoreData("members");
+    const data = JSON.parse(JSON.stringify(result));
+    data.result.sort((a, b) => (a.timestamp > b.timestamp ? 1 : -1));
+    members.value = data.result;
+    return {
+      members,
+    };
+  },
+  methods: {
+    async handleSubmit() {
+      const { result } = await addFirestoreData("members", formState.value);
+      await getFirestoreData("members");
+    },
+    async deleteMember() {
+      await deleteFirestoreData("members", "XOa2vfh7bx7ZVzc828bI");
+      await getFirestoreData("members");
+    },
+  },
+};
+</script>
 <template>
-  <button @click="gmailLogin">Login With Gmail</button>
-  <button @click="logout" v-if="isLoggedIn">Logout</button>
+  <div class="member-header" v-if="members">
+    <h1>Members</h1>
+    <h3>
+      Following is the list of the NepSAP members. We periodically update our
+      members list.
+    </h3>
+  </div>
+
+  <v-card >
+    <v-list density="compact">
+      <v-list-subheader>NEPSAP MEMBERS</v-list-subheader>
+      <v-list-item
+        v-for="(item, i) in members"
+        :key="i"
+        :value="item"
+        active-color="primary"
+        variant="tonal"
+        height="80px"
+        width="auto"
+        elevation="0"
+        item-props
+        lines="three"
+      >
+        <v-list-item-avatar>
+          <v-avatar size="45">
+            <v-img v-if="item.profile" v-bind:src="item.profile"></v-img>
+            <v-img
+              v-if="!item.profile"
+              src="https://firebasestorage.googleapis.com/v0/b/nepsap-website.appspot.com/o/Members%2Fdefault.png?alt=media&token=6ae99e14-2486-4a05-8de5-71847f1de7ab"
+            ></v-img>
+          </v-avatar>
+        </v-list-item-avatar>
+        <v-list-item-title v-text="item.Name"></v-list-item-title>
+        <v-list-item v-text="item.Expertise"></v-list-item>
+
+
+        <v-list-item >
+          <v-avatar>
+            <a v-bind:href="item.profile" target="_blank"
+              ><i class="fab fa-linkedin member-links" aria-hidden="true"></i
+            ></a>
+            <a v-bind:href="item.profile" target="_blank"
+              ><i class="fas fa-envelope member-links" aria-hidden="true"></i
+            ></a>
+          </v-avatar>
+        </v-list-item>
+
+      </v-list-item>
+    </v-list>
+  </v-card>
+  <!-- <button @click="handleSubmit">Add To Firebase</button>
+  <button @click="deleteMember">Delete</button> -->
 </template>
 
-<script>
-import { GoogleAuthProvider, signInWithPopup, getAuth, signOut,onAuthStateChanged } from "firebase/auth";
-var user;
-const isLoggedIn = ref(false);
-export default {
-  methods: {
-    gmailLogin() {
-      console.log("clicked");
-      const provider = new GoogleAuthProvider();
-      signInWithPopup(getAuth(), provider)
-        .then((result) => {
-          
-          user = result;
-          console.log(user);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-    logout(){
-      signOut(auth).then(()=>{
 
-      })
-    }
-  },
-  
-};
+<style>
 
-let auth;
-onMounted(()=>{
-  auth = getAuth();
-  onAuthStateChanged(auth, (user) =>{
-    if(user){
-      isLoggedIn.value = true;
-    }else{
-      isLoggedIn.value =false;
-    }
-  })
-  })
-</script>
+
+.member-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 35px;
+}
+
+.members-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+</style>

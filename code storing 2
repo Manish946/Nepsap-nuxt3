@@ -1,0 +1,33 @@
+
+    <v-card  max-width="448" class="mx-auto">
+    <v-layout>
+      <v-main>
+        <v-container fluid v-for="member in members" :key="member.uid">
+          <v-card
+            border
+            class="mb-2"
+            density="compact"
+            v-bind:prepend-avatar="member.profile"
+            v-bind:subtitle="member.Expertise"
+            v-bind:title="member.Name"
+          >
+            <v-img src="https://picsum.photos/512/128?image=660" height="128" cover></v-img>
+
+            <v-card-text>
+              During my last trip to South America, I spent 2 weeks traveling through Patagonia in Chile.
+            </v-card-text>
+
+            <template v-slot:actions>
+
+
+              <v-btn color="primary" variant="text">
+              <a v-bind:href="member.linkedinLink" target="_blank"
+              ><i class="fab fa-linkedin member-links" aria-hidden="true"></i
+            ></a>
+              </v-btn>
+            </template>
+          </v-card>
+        </v-container>
+      </v-main>
+    </v-layout>
+  </v-card>

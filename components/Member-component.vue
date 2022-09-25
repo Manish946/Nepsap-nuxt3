@@ -38,50 +38,134 @@ export default {
     </h3>
   </div>
 
-  <v-card class="mx-auto">
-    <v-list density="compact">
-      <v-list-subheader>NEPSAP MEMBERS</v-list-subheader>
-      <v-list-item
-        v-for="(item, i) in members"
-        :key="i"
-        :value="item"
-        active-color="primary"
-        variant="tonal"
-        height="65px"
-        width="auto"
-        elevation="0"
-      >
-        <v-list-item-avatar>
-          <v-avatar size="45">
-            <v-img v-if="item.profile" v-bind:src="item.profile"></v-img>
-            <v-img
-              v-if="!item.profile"
-              src="https://firebasestorage.googleapis.com/v0/b/nepsap-website.appspot.com/o/Members%2Fdefault.png?alt=media&token=6ae99e14-2486-4a05-8de5-71847f1de7ab"
-            ></v-img>
-          </v-avatar>
-        </v-list-item-avatar>
+<v-expansion-panels variant="popout" class="pa-7">
+    <v-expansion-panel
+      v-for="(member) in members"
+      :key="member.uid"
+      hide-actions
+    >
+      <v-expansion-panel-title>
+        <v-row
+          align="center"
+          class="d-flex align-content-space-around flex-wrap"
+          no-gutters
+        >
+          <v-col
+            cols="4"
+            sm="2"
+            md="1"
+          >
+            <v-avatar
+              size="56px"
+            >
+              <v-img
+                v-if="member.profile"
+                alt="Avatar"
+               v-bind:src="member.profile"
+              ></v-img>
+              <v-img v-else alt="Avatar" src="https://firebasestorage.googleapis.com/v0/b/nepsap-website.appspot.com/o/Members%2Fdefault.png?alt=media&token=6ae99e14-2486-4a05-8de5-71847f1de7ab">
 
-        <v-list-item-title v-text="item.Name"></v-list-item-title>
-        <v-list-item >
-          <v-avatar>
-            <a v-bind:href="item.profile" target="_blank"
+              </v-img>
+              <!-- <v-icon
+                v-else
+                :color="message.color"
+                :icon="message.icon"
+              ></v-icon> -->
+            </v-avatar>
+          </v-col>
+
+          <v-col
+            class="hidden-xs-only text-left font-weight-light"
+            sm="2"
+            md="4"
+            lg="4"
+          >
+            <strong v-html="member.Name" class="member-primary"></strong>
+            <!-- <span
+              v-if="message.total"
+              class="text-grey"
+            >
+              &nbsp;({{ message.total }})
+            </span> -->
+          </v-col>
+
+          <v-col
+            class="text-no-wrap text-left"
+            cols="5"
+            sm="3"
+            md="3"
+          >
+            <!-- <v-chip
+              v-if="message.new"
+              :color="`${message.color}-lighten-1`"
+              class="ml-0 mr-2"
+              label
+              small
+            >
+              {{ message.new }} new
+            </v-chip> -->
+            <strong v-html="member.Expertise"></strong>
+          </v-col>
+
+          <v-col
+            v-if="member.Email"
+            class="text-medium-emphasis text-truncate hidden-sm-and-down d-flex justify-end"
+          >
+           <a v-bind:href="member.Linkedin" target="_blank"
               ><i class="fab fa-linkedin member-links" aria-hidden="true"></i
             ></a>
-            <a v-bind:href="item.profile" target="_blank"
+            &nbsp;
+            <a v-bind:href="'mailto:'+member.Email" target="_blank"
               ><i class="fas fa-envelope member-links" aria-hidden="true"></i
             ></a>
-          </v-avatar>
-        </v-list-item>
-      </v-list-item>
-    </v-list>
-  </v-card>
-  <!-- <button @click="handleSubmit">Add To Firebase</button>
-  <button @click="deleteMember">Delete</button> -->
+          </v-col>
+        </v-row>
+        <v-col>
+          <v-col
+            cols="4"
+            sm="2"
+            md="1"
+          >
+            <v-avatar
+              size="56px"
+            >
+              <v-img
+                v-if="member.profile"
+                alt="Avatar"
+               v-bind:src="member.profile"
+              ></v-img>
+              <v-img v-else alt="Avatar" src="https://firebasestorage.googleapis.com/v0/b/nepsap-website.appspot.com/o/Members%2Fdefault.png?alt=media&token=6ae99e14-2486-4a05-8de5-71847f1de7ab">
+
+              </v-img>
+              <!-- <v-icon
+                v-else
+                :color="message.color"
+                :icon="message.icon"
+              ></v-icon> -->
+            </v-avatar>
+          </v-col>
+        </v-col>
+      </v-expansion-panel-title>
+
+      <v-expansion-panel-text>
+        <v-card-text v-text="member.Expertise"></v-card-text>
+      </v-expansion-panel-text>
+    </v-expansion-panel>
+  </v-expansion-panels>
+  
 </template>
 
 
 <style>
+.member-primary{
+  color: #121d33;
+}
 
+
+.member-links{
+  font-size: 25px;
+  color: #121d33;
+}
 
 .member-header {
   display: flex;
