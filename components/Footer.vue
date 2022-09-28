@@ -13,7 +13,7 @@ export default ({
   <div>
     <div class="footer-join">
       <h1>Become a Nepsap member</h1>
-      <nuxt-link class="join-button" to="/members">Get Started</nuxt-link>
+      <nuxt-link class="join-button" to="/login">Get Started</nuxt-link>
     </div>
 
     <div class="footer">

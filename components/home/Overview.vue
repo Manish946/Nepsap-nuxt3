@@ -29,7 +29,14 @@ export default({
               href="https://ihcph.kk.dk/cpr-registration-0"
               class="link"
               target="_blank"
-              >Register</a
+              >
+              <v-btn 
+              plain      
+              color="yellow"  
+              >
+                Register
+              </v-btn>
+              </a
             >
           </div>
         </div>
@@ -47,7 +54,13 @@ export default({
               href="https://www.kollegierneskontor.dk/default.aspx?lang=GB"
               class="link"
               target="_blank"
-              >Signup</a
+              >
+              <v-btn
+              color="light-blue"
+              >
+              Signup
+              </v-btn>
+              </a
             >
           </div>
         </div>
@@ -66,7 +79,13 @@ export default({
               href="https://www.retshjaelpen.dk/front-page"
               class="link"
               target="_blank"
-              >Link</a
+              >
+               <v-btn
+              color="blue"
+              >
+              Link
+              </v-btn>
+              </a
             >
           </div>
         </div>
@@ -81,7 +100,13 @@ export default({
           <div class="flex-row-space">
             <p class="content-text">Skat Website :</p>
             <a href="https://skat.dk/" class="link" target="_blank"
-              >Skat Link</a
+              >
+              <v-btn
+              color="yellow"
+              >
+              Skat Link
+              </v-btn>
+              </a
             >
           </div>
         </div>
@@ -101,25 +126,6 @@ export default({
 .item-content {
   margin: 0%;
   padding: 0%;
-}
-
-.link {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 0.25rem;
-  border: 1px solid #2266e5;
-  color: #2266e5;
-  cursor: pointer;
-  font-weight: 600;
-  padding: 0.25rem 0.5rem;
-  font-size: 1.2rem;
-  transition: background-color 0.3s ease 0s;
-}
-
-.link:hover {
-  background-color: #2266e5;
-  color: white;
 }
 
 .content-text {
