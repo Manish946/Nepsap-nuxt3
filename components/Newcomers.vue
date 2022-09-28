@@ -727,6 +727,10 @@ export default{
 
 .information-buttons {
   margin: 1rem 0%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
 }
 
 .location-button {
@@ -736,7 +740,6 @@ export default{
   border-radius: 5px;
   font-size: 20px;
   margin-top: 1rem;
-  margin-right: auto;
   border: 2px solid #443ee3;
 }
 
@@ -768,7 +771,6 @@ export default{
   border-radius: 5px;
   font-size: 20px;
   margin-top: auto;
-  margin-right: auto;
 }
 
 .information-container {
