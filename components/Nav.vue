@@ -96,10 +96,22 @@ export default({
       </div> -->
       <div class="login-wrapper">
           <nuxt-link to="/login" v-if="!user" class="login-button"
-            >Login</nuxt-link
+            >
+            <v-btn
+            variant="outlined"
+            color="white"
+            >Login</v-btn>
+            </nuxt-link
           >
-          <a class="signin-button" v-if="!user" href="#">Sign Up</a>
-          <a @click="signOut" v-if="user" class="login-button">Logout</a>
+          <!-- <a class="signin-button" v-if="!user" href="#">Sign Up</a> -->
+          <!-- <a @click="signOut" v-if="user" class="login-button">Logout</a> -->
+          <v-btn
+            variant="outlined"
+            color="red"
+            @click="signOut" v-if="user"
+            class="login-button"
+            >Logout</v-btn>
+
           <div v-if="user">
           <p style="color:white">{{user.displayName}}</p>
           </div>
@@ -267,22 +279,7 @@ export default({
 
 .login-button {
   margin-right: 1.25rem;
-  background-color: transparent;
-  color: white;
-  border: 1px solid white;
-  border-radius: 0.5rem;
-  font-size: 16px;
-  font-weight: 500;
-  padding: 0.625rem 0.875rem;
-  cursor: pointer;
-  transition: all 0.3s ease 0s;
-  white-space: nowrap;
-  letter-spacing: 0.01em;
-  display: inline-flex;
-  -webkit-box-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  align-items: center;
+  
 }
 
 .signin-button {
