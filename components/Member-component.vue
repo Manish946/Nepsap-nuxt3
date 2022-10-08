@@ -68,10 +68,9 @@ export default {
              xs="12"
              class="text-center pa-2"
           >
-            <v-avatar >
-              
-              <img v-if="member.profile != 'null'" v-bind:src="member.profile" alt="" height="40" width="40" />
-              <img v-if="member.profile == 'null'" height="40" width="40" src="https://firebasestorage.googleapis.com/v0/b/nepsap-website.appspot.com/o/Members%2Fdefault.png?alt=media&token=6ae99e14-2486-4a05-8de5-71847f1de7ab">
+            <v-avatar>              
+              <img v-if="member.profile != 'null'" v-bind:src="member.profile" alt="" height="60" width="60" />
+              <img v-if="member.profile == 'null'" height="60" width="60" src="https://firebasestorage.googleapis.com/v0/b/nepsap-website.appspot.com/o/Members%2Fdefault.png?alt=media&token=6ae99e14-2486-4a05-8de5-71847f1de7ab">
             </v-avatar>
           </v-col>
 
@@ -138,6 +137,10 @@ export default {
 
 
 <style>
+.v-avatar.v-avatar--size-default {
+    --v-avatar-height: 60px !important; 
+}
+
 .member-primary{
   color: #121d33;
 }
