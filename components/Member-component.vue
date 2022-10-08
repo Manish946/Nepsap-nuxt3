@@ -61,22 +61,13 @@ export default {
           no-gutters
         >
           <v-col
-            cols="4"
-            sm="2"
+            cols="12"
+            order="1" 
             md="1"
+             sm="12"
+             xs="12"
+             class="text-center pa-2"
           >
-            <!-- <v-avatar
-              size="56px"
-            >
-              <v-img
-                alt="Avatar"
-                v-bind:src="member.profile"
-              ></v-img>
-              <v-img alt="Avatar" src="https://firebasestorage.googleapis.com/v0/b/nepsap-website.appspot.com/o/Members%2Fdefault.png?alt=media&token=6ae99e14-2486-4a05-8de5-71847f1de7ab">
-
-              </v-img>
-
-            </v-avatar> -->
             <v-avatar >
               
               <img v-if="member.profile != 'null'" v-bind:src="member.profile" alt="" height="40" width="40" />
@@ -85,25 +76,24 @@ export default {
           </v-col>
 
           <v-col
-            class="hidden-xs-only text-left font-weight-light"
-            sm="2"
-            md="4"
-            lg="4"
+            class="hidden-xs-only text-wrap text-center font-weight-light"
+            cols="12"
+             md="3"
+             sm="12"
+             xs="12"
+            order="2"
           >
             <strong v-html="member.Name" class="member-primary"></strong>
-            <!-- <span
-              v-if="message.total"
-              class="text-grey"
-            >
-              &nbsp;({{ message.total }})
-            </span> -->
           </v-col>
 
           <v-col
-            class="text-no-wrap text-left"
-            cols="5"
-            sm="3"
-            md="3"
+            class="text-wrap text-left text-center pa-2"
+            cols="12"
+             md="7"
+             sm="12"
+             xs="12"
+             order="3"
+
           >
             <!-- <v-chip
               v-if="message.new"
@@ -119,7 +109,12 @@ export default {
 
           <v-col
             v-if="member.Email"
-            class="text-medium-emphasis text-truncate hidden-sm-and-down d-flex justify-end"
+            cols="12"
+             md="1"
+             sm="12"
+             xs="12"
+            order="4"
+            class="text-medium-emphasis text-truncate hidden-sm-and-down d-flex justify-center pa-2"
           >
            <a v-bind:href="member.Linkedin" target="_blank"
               ><i class="fab fa-linkedin member-links" aria-hidden="true"></i
@@ -159,6 +154,9 @@ export default {
   align-items: center;
   flex-direction: column;
   margin-top: 35px;
+  margin-left: 42px;
+  margin-right: 42px;
+  text-align: center;
 }
 
 .members-wrapper {
