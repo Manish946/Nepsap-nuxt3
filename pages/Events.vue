@@ -2,8 +2,8 @@
   <div>
     <Nav></Nav>
     <main>
-      <div class="home">
-
+      <div class="event">
+        <Event-component></Event-component>
       </div>
     </main>
 

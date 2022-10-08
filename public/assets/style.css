@@ -61,6 +61,21 @@ html,body {
     align-items: center;
   }
   
+  .event{
+    background-color: rgb(18 29 51);
+    /* background-image: url(~/public/assets/background.svg); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center bottom;
+    color: rgb(255, 255, 255);
+    padding-top: 4.8rem;
+    display: flex;
+    min-height: 100vh;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+  }
+
   .members{
     background-color: rgb(18 29 51);
     /* background-image: url(~/public/assets/background.svg); */
@@ -68,7 +83,7 @@ html,body {
     background-size: cover;
     background-position: center bottom;
     color: rgb(255, 255, 255);
-    height: 100vh;
+    min-height: 100vh;
     padding-top: 4.8rem;
     display: flex;
     justify-content: flex-start;

@@ -9,7 +9,7 @@ const formState = ref<IMember>({
 export default {
   async setup() {
     try{
-    const members = ref<IMember>();
+    const members = ref();
     const result = await getFirestoreData("members");
     const data = JSON.parse(JSON.stringify(result));
     data.result.sort((a, b) => (a.timestamp > b.timestamp ? 1 : -1));
