@@ -20,7 +20,7 @@ html,body {
   }
   
   .home {
-    background-color: rgb(18 29 51);
+    background-color: #121d33;
     background-image: url(~/public/assets/background.svg);
     background-repeat: no-repeat;
     background-size: cover;
