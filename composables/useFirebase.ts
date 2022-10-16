@@ -17,7 +17,8 @@ import {
       signInWithPopup(getAuth(), provider)
         .then((result) => {
          // this.$store.commit('ON_AUTH_STATE_CHANGED_MUTATION')
-
+          const router = useRouter();
+          router.push("/");
           return result;
         //  console.log(this.$store.state.userData)
         })
