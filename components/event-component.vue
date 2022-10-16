@@ -46,9 +46,9 @@ export default {
       <p v-html="event.descriptionthird" class="bottom-description"></p>
       <h2 class="bottom-venue">Venue: <span style="color:gray">{{event.venue}}</span></h2>
       <h2 class="bottom-time">Time: <span style="color:gray">{{event.time}}</span></h2>
-      <div class="event-link">
+      <div class="event-link" v-if="event.facebooklink">
         <h2 class="bottom-time">Event Link: </h2>
-      <a  target="_blank" href="https://www.facebook.com/events/500739775058883/?acontext=%7B%22ref%22%3A%2252%22%2C%22action_history%22%3A%22[%7B%5C%22surface%5C%22%3A%5C%22share_link%5C%22%2C%5C%22mechanism%5C%22%3A%5C%22share_link%5C%22%2C%5C%22extra_data%5C%22%3A%7B%5C%22invite_link_id%5C%22%3A927094011324675%7D%7D]%22%7D">
+      <a  target="_blank" v-bind:href="event.facebooklink">
      <span class="fab fa-facebook-f facebook-circle"></span>
       </a>
       </div>
@@ -182,6 +182,9 @@ export default {
 .top-date{
   font-size: 23px;
 }
+.top-venue{
+  font-size: 23px;
+}
 .top-intro{
   font-size: 18px;
 }
@@ -211,6 +214,9 @@ export default {
 }
 .bottom-description{
   font-size: 15px;
+}
+.top-venue{
+  font-size: 19px;
 }
 .bottom-time{
 font-size: 17px;
