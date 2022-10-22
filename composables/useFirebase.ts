@@ -1,5 +1,4 @@
 //https://firebase.google.com/docs/auth/web/start
-
 import { async } from "@firebase/util";
 import {
     getAuth,
@@ -32,6 +31,7 @@ import {
     const firebaseUser = useFirebaseUser();
     // const userFB = useUser()
     firebaseUser.value = auth.currentUser;
+    
   
   
     
@@ -40,13 +40,15 @@ import {
       if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
-        console.log(user)
+      
       } else {
         //if signed out
         console.log("Signed Out")
       }
   
       firebaseUser.value = user;
+      const CookieUser = useCookie('CookieUser')
+      CookieUser.value = JSON.stringify(user);
       
       // @ts-ignore
     });

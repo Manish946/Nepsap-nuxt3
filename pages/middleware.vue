@@ -1,10 +1,8 @@
 <template>
   <div>
     <Nav></Nav>
-    <main>
-      <div class="contact">
-      <SignIn></SignIn>
-      </div>
+    <main class="event">
+        <h1 style="color:red; display: flex; justify-self: center; align-self: center;" >Only Admin is allowed</h1>
     </main>
 
 
