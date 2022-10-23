@@ -32,12 +32,15 @@ export default {
   background-color: white;
 
   height: 100vh;
-  flex: 5;
+  flex: 1;
 }
 
 #side-menu {
   background-color: var(--primary-color);
   height: 100vh;
-  flex: 1;
+  max-width: 250px;
+  min-width: 250px;
+
+
 }
 </style>

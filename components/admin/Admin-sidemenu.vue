@@ -1,6 +1,8 @@
 <template>
     <div id="admin-logo">
-        <h1>NEPSAP</h1>
+      <nuxt-link to="/admin" class="logo">
+        <img height="40" width="224" src="public/assets/NepsapLogo.svg" alt="" />
+      </nuxt-link>
     </div>
 </template>
 <script lang="ts">
@@ -15,5 +17,6 @@ export default{
     justify-content: center;
     align-items: center;
     color:white;
+    padding: 15px;
 }
 </style>

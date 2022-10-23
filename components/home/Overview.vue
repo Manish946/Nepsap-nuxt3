@@ -68,7 +68,7 @@ export default({
       <div class="overview-item">
         <div class="item-header">
 
-          <img height="50" width="50" src="~/public/assets/rentalHouse.svg" alt="" />
+          <img height="50" width="50" src="/assets/rentalHouse.svg" alt="" />
           
           <span class="item-text">Rental</span>
         </div>
