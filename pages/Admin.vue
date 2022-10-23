@@ -1,6 +1,9 @@
 <template>
- <h1>admin Page</h1>
- <h1 v-if="user">{{user.displayName}}</h1>
+ 
+ <main id="adminPage">
+ <Admin-Component></Admin-Component>
+ </main>
+
 </template>
 
 
@@ -24,8 +27,14 @@ definePageMeta({
 
 <style>
 
-.about-content{
-  padding: 75px 0;
+#adminPage{
+  background-color: var(--primary-color);
+  height: 100vh;
 }
 
+
+
+:root{
+  --primary-color: #121d33;
+}
 </style>

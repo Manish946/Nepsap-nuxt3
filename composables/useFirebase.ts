@@ -47,7 +47,7 @@ import {
       }
   
       firebaseUser.value = user;
-      const CookieUser = useCookie('CookieUser')
+      const CookieUser = useCookie('CookieUser',{maxAge:24 * 7 * 60 * 31,sameSite:"none",secure:true})
       CookieUser.value = JSON.stringify(user);
       
       // @ts-ignore
