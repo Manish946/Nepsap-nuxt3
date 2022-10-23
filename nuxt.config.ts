@@ -24,12 +24,13 @@ export default defineNuxtConfig({
       }
       ,
       { rel: 'icon', type: 'image/png', href: '/PageLogo.png' },
+      { rel: 'stylesheet', type: 'text/css', href: '/assets/globalstyle.css' },
     ],
   },
   type: ['vuetify'],
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['public/assets/style.css', "vuetify/lib/styles/main.sass"],
+  css: ["vuetify/lib/styles/main.sass"],
     build: {
         transpile: ["vuetify"]
     },
