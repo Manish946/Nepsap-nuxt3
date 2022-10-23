@@ -12,10 +12,13 @@
     "nuxt": "latest"
   },
   "dependencies": {
+    "@formkit/auto-animate": "^1.0.0-beta.3",
+    "@mdi/font": "^7.0.96",
     "@nuxt/content": "^2.1.0",
     "@nuxtjs/content": "^0.3.0",
     "@nuxtjs/pwa": "^3.3.5",
     "firebase": "^9.9.4",
+    "import": "^0.0.6",
     "lottie-web": "^5.9.6",
     "sass": "^1.54.9",
     "sass-loader": "^13.0.2",

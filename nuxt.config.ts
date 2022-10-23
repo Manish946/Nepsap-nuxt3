@@ -30,7 +30,7 @@ export default defineNuxtConfig({
   type: ['vuetify'],
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ["vuetify/lib/styles/main.sass"],
+  css: ["vuetify/lib/styles/main.sass","@mdi/font/css/materialdesignicons.css"],
     build: {
         transpile: ["vuetify"]
     },
