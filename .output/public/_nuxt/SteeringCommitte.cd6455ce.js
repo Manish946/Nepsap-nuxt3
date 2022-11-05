@@ -1,0 +1,1 @@
+import{_ as o}from"./Nav.fedcd70b.js";import{a as n,o as a,b as s,f as c,e}from"./entry.64158aec.js";const r={name:"SteeringCommittePage"},_=e("main",null,[e("div",{class:"home"})],-1);function m(i,p,d,l,f,u){const t=o;return a(),s("div",null,[c(t),_])}const g=n(r,[["render",m]]);export{g as default};
