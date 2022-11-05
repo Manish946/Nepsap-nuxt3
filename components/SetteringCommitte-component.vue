@@ -1,4 +1,6 @@
 <template>
+<div>
+
     <div>
     <div class="steeringCommitte-header" v-if="members">
       <h1>Steering Committe</h1>
@@ -38,6 +40,7 @@
     >Loading</v-progress-circular>
 
   </div>
+</div>
 
 </template>
 
